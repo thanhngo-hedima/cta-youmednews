@@ -11,8 +11,8 @@
 
         :root {
             /* KÍCH THƯỚC BAN ĐẦU (Được sử dụng làm fallback cho Desktop) */
-            --section-width-desktop: 798px;
-            --section-height-desktop: 120px;
+            --section-width-desktop: 760px;
+            --section-height-desktop: 120px; 
             
             /* MÀU SẮC */
             --bg-color: transparent;
@@ -46,7 +46,7 @@
 
         .cta-content {
             flex: 1;
-            padding: 10px 30px; /* Điều chỉnh padding cho phù hợp với chiều cao 120px */
+            padding: 15px 30px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -74,6 +74,8 @@
             display: flex;
             gap: 10px;
             margin-top: 5px;
+            flex-wrap: wrap; /* Cho phép các nút xuống dòng nếu quá hẹp */
+            justify-content: left; /* Căn giữa các nút khi chúng nằm ngang */
         }
 
         .cta-button {
@@ -102,7 +104,7 @@
             opacity: 0.95;
         }
 
-        /* HÌNH ẢNH BÊN PHẢI */
+        /* HÌNH ẢNH BÊN PHẢI (Desktop) */
         .cta-image-section {
             width: 320px;
             min-width: 280px;
@@ -110,29 +112,62 @@
             position: relative;
             overflow: hidden;
             background-image: url('https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg'); 
-            background-size: cover;
-            background-position: center;
+            background-size: flex;
+            background-position: top;
         }
         .cta-image-section::after {
             content: none;
         }
+
 
         /* =================================================== */
         /* === 3. MEDIA QUERY CHO TABLET (Tối đa 1024px) === */
         /* =================================================== */
 
         @media (max-width: 1024px) {
+            /* CHUYỂN BỐ CỤC SANG DỌC */
             .cta-container {
-                width: 95%; /* Chiếm 95% chiều rộng màn hình */
-                max-width: 798px; /* Giới hạn tối đa 798px */
-                height: 130px; /* Tăng nhẹ chiều cao cho Tablet */
+                width: 95%; 
+                height: 320px; 
+                flex-direction: column; 
             }
+            
+            /* 1. Căn giữa Title và Description */
             .cta-content {
-                padding: 10px 20px;
+                padding: 20px 20px 10px 20px;
+                align-items: center; 
+                text-align: center; 
             }
+            
+            .cta-title, .cta-description {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* 2. Khối nút (Giữ NGANG) */
+            .cta-buttons {
+                width: 60%; /* Giữ 60% chiều ngang */
+                max-width: 400px; 
+                margin: 10px auto; 
+                justify-content: center; /* Giữ căn giữa theo chiều ngang */
+                /* Đảm bảo flex-direction không bị override, giữ nguyên row */
+            }
+            
+            .cta-button {
+                /* Giữ nguyên chia đôi cho hai nút, nhưng cho phép co giãn */
+                flex-grow: 1; 
+                width: auto;
+            }
+
+            /* 3. Hình ảnh dưới cùng */
             .cta-image-section {
-                width: 250px; /* Giảm chiều rộng hình ảnh để nhường chỗ cho nội dung */
-                min-width: 250px;
+                width: 95%; 
+                height: auto; 
+                margin: 0 auto 15px auto; 
+                min-width: 0;
+                background-size: contain; 
+                background-repeat: no-repeat;
             }
         }
 
@@ -142,49 +177,47 @@
         /* =================================================== */
 
         @media (max-width: 768px) {
+            /* Kế thừa hầu hết từ Tablet */
             .cta-container {
                 width: 100%;
-                height: auto; /* Chiều cao tự động */
-                flex-direction: column; /* Xếp chồng nội dung và hình ảnh */
-                margin: 15px 0;
-            }
+                height: 250px; 
 
+                margin: 10px 0;
+            }
+            
+            /* Điều chỉnh padding và căn giữa văn bản cho Mobile */
             .cta-content {
                 padding: 15px 15px 5px 15px;
             }
-
             .cta-title {
-                font-size: 18px; 
+                font-size: 16px; 
             }
-
             .cta-description {
                 font-size: 11px;
-                margin-top: 5px;
             }
 
+            /* 2. Button (Giữ NGANG) */
             .cta-buttons {
-                flex-direction: column; /* Xếp chồng các nút theo chiều dọc */
-                gap: 8px;
-                margin-top: 10px;
-                margin-bottom: 15px; /* Thêm khoảng cách ở cuối khối nội dung */
-            }
-
-            .cta-button {
-                width: 100%; /* Nút chiếm toàn bộ chiều rộng */
-                font-size: 12px; /* Tăng cỡ chữ button */
-                padding: 10px 15px;
-                white-space: normal; /* Cho phép chữ xuống dòng trên mobile nếu cần */
+                width: 90%; /* Tăng button lên 90% cho mobile để có đủ chỗ cho 2 nút ngang */
+                max-width: none; /* Bỏ giới hạn tối đa */
+                margin: 10px auto;
+                gap: 5px; /* Giảm khoảng cách giữa 2 nút */
+                flex-direction: row; /* Đảm bảo luôn nằm ngang */
             }
             
-            /* Tùy chỉnh cho chấm tròn nếu nút xuống dòng */
-            .dot {
-                align-self: flex-start; /* Giữ chấm tròn ở đầu dòng nếu chữ xuống dòng */
+            .cta-button {
+                flex-grow: 1;
+                width: auto; /* Chia đều không gian còn lại */
+                font-size: 12px;
+                padding: 10px 8px; /* Giảm padding ngang để tiết kiệm không gian */
+                white-space: nowrap; /* Ưu tiên giữ chữ trên một dòng */
             }
 
+            /* 3. Hình ảnh dưới cùng */
             .cta-image-section {
-                width: 100%;
-                height: 150px; /* Chiều cao cố định cho hình ảnh trên mobile */
-                min-width: 0;
+                width: 95%; 
+                aspect-ratio: 16 / 9; 
+                margin: 0 auto 10px auto;
             }
         }
     </style>
@@ -217,4 +250,3 @@
 
 </body>
 </html>
-
