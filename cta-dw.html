@@ -3,48 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTA Section</title>
+    <title>CTA Section Responsive</title>
     <style>
-        /* * --- CÁC ĐIỂM TÙY CHỈNH CHÍNH ---
-         * Bạn có thể thay đổi các giá trị trong khối CSS dưới đây:
-         */
+        /* =================================================== */
+        /* === 1. ĐỊNH NGHĨA BIẾN (GLOBAL) === */
+        /* =================================================== */
 
         :root {
-            /* 1. KÍCH THƯỚC */
-            --section-width: 798px;
-            --section-height: 120px;
+            /* KÍCH THƯỚC BAN ĐẦU (Được sử dụng làm fallback cho Desktop) */
+            --section-width-desktop: 798px;
+            --section-height-desktop: 120px;
             
-            /* 2. MÀU SẮC */
+            /* MÀU SẮC */
             --bg-color: transparent;
             --button-bg-color-1: #0248c4;
             --button-text-color-1: #ffffff;
             --button-bg-color-2: #cbcbcb;
             --button-text-color-2: #626262;
             
-            /* 3. FONT VÀ CỠ CHỮ */
-            --font-family: Arial;
+            /* FONT VÀ CỠ CHỮ */
+            --font-family: Arial, sans-serif;
             --title-font-size: 20px;
             --description-font-size: 12px;
             --button-font-size: 10px;
         }
 
-        /* -------------------------------------- */
+        /* =================================================== */
+        /* === 2. THIẾT KẾ CHUNG (BASE & DESKTOP > 1024px) === */
+        /* =================================================== */
 
         .cta-container {
-            width: var(--section-width);
-            height: var(--section-height);
+            width: var(--section-width-desktop);
+            height: var(--section-height-desktop);
             background-color: var(--bg-color);
-            color: var(--text-color);
             font-family: var(--font-family);
             border-radius: 10px;
             overflow: hidden;
             display: flex;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
         }
 
         .cta-content {
             flex: 1;
-            padding: 50px 30px;
+            padding: 10px 30px; /* Điều chỉnh padding cho phù hợp với chiều cao 120px */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -56,6 +58,7 @@
             font-weight: bold;
             margin-bottom: 0px;
             margin-top: 0px;
+            line-height: 1.2;
         }
 
         .cta-description {
@@ -63,7 +66,7 @@
             color: #626262;
             line-height: 1.1;
             margin-bottom: 0px;
-            margin-top: 5px;
+            margin-top: 3px;
             max-width: 450px;
         }
 
@@ -74,60 +77,130 @@
         }
 
         .cta-button {
+            /* FIX CHỮ XUỐNG DÒNG VÀ CĂN GIỮA */
+            white-space: nowrap; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 8px 18px; 
             border-radius: 10px;
             font-size: var(--button-font-size);
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: background-color 0.3s, transform 0.1s;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Nút 1 */
-        #button-1 {
-            background-color: var(--button-bg-color-1);
-            color: var(--button-text-color-1);
-        }
-
-        /* Nút 2 */
-        #button-2 {
-            background-color: var(--button-bg-color-2);
-            color: var(--button-text-color-2);
-            background-color: transparent;
-            border: 1.5px solid var(--button-text-color-2);
-        }
+        /* Nút 1 & Nút 2 */
+        #button-1 { background-color: var(--button-bg-color-1); color: var(--button-text-color-1); }
+        #button-2 { background-color: transparent; color: var(--button-text-color-2); border: 1.5px solid var(--button-text-color-2); }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
+            transform: translateY(-1px);
+            opacity: 0.95;
         }
 
-        /* Phần hình ảnh bên phải */
+        /* DOT TRONG BUTTON */
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: currentColor;
+            border-radius: 50%;
+            margin-left: 5px;
+            flex-shrink: 0;
+        }
+
+        /* HÌNH ẢNH BÊN PHẢI */
         .cta-image-section {
             width: 320px;
             min-width: 280px;
             background-color: #ffffff;
             position: relative;
             overflow: hidden;
-        }
-        
-        .cta-image-section {
             background-image: url('https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg'); 
             background-size: cover;
             background-position: center;
         }
         .cta-image-section::after {
-            content: none; 
+            content: none;
+        }
+
+        /* =================================================== */
+        /* === 3. MEDIA QUERY CHO TABLET (Tối đa 1024px) === */
+        /* =================================================== */
+
+        @media (max-width: 1024px) {
+            .cta-container {
+                width: 95%; /* Chiếm 95% chiều rộng màn hình */
+                max-width: 798px; /* Giới hạn tối đa 798px */
+                height: 130px; /* Tăng nhẹ chiều cao cho Tablet */
+            }
+            .cta-content {
+                padding: 10px 20px;
+            }
+            .cta-image-section {
+                width: 250px; /* Giảm chiều rộng hình ảnh để nhường chỗ cho nội dung */
+                min-width: 250px;
+            }
+        }
+
+
+        /* =================================================== */
+        /* === 4. MEDIA QUERY CHO MOBILE (Tối đa 768px) === */
+        /* =================================================== */
+
+        @media (max-width: 768px) {
+            .cta-container {
+                width: 100%;
+                height: auto; /* Chiều cao tự động */
+                flex-direction: column; /* Xếp chồng nội dung và hình ảnh */
+                margin: 15px 0;
+            }
+
+            .cta-content {
+                padding: 15px 15px 5px 15px;
+            }
+
+            .cta-title {
+                font-size: 18px; 
+            }
+
+            .cta-description {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+
+            .cta-buttons {
+                flex-direction: column; /* Xếp chồng các nút theo chiều dọc */
+                gap: 8px;
+                margin-top: 10px;
+                margin-bottom: 15px; /* Thêm khoảng cách ở cuối khối nội dung */
+            }
+
+            .cta-button {
+                width: 100%; /* Nút chiếm toàn bộ chiều rộng */
+                font-size: 12px; /* Tăng cỡ chữ button */
+                padding: 10px 15px;
+                white-space: normal; /* Cho phép chữ xuống dòng trên mobile nếu cần */
+            }
+            
+            /* Tùy chỉnh cho chấm tròn nếu nút xuống dòng */
+            .dot {
+                align-self: flex-start; /* Giữ chấm tròn ở đầu dòng nếu chữ xuống dòng */
+            }
+
+            .cta-image-section {
+                width: 100%;
+                height: 150px; /* Chiều cao cố định cho hình ảnh trên mobile */
+                min-width: 0;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <div class="cta-container">
         <div class="cta-content">
             <h1 class="cta-title">Miễn phí phiên bản "STANDARD"</h1>
@@ -153,5 +226,4 @@
     </div>
 
 </body>
-
 </html>
