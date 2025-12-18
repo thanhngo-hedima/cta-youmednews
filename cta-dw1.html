@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTA Doctor Workspace</title>
+
+  <!-- FONT: INTER (RẤT DỄ ĐỌC, CHUẨN Y TẾ & SAAS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --section-width-desktop: 798px;
+      --section-height-desktop: 120px;
+
+      --primary-color: #0248c4;
+      --text-gray: #626262;
+
+      --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* ===== SEMANTIC BOX ===== */
+    aside.cta-aside {
+      margin: 30px auto;
+      max-width: var(--section-width-desktop);
+    }
+
+    .cta-context {
+      font-size: 13px;
+      color: var(--text-gray);
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* ===== CTA CONTAINER ===== */
+    .cta-container {
+      width: 100%;
+      height: var(--section-height-desktop);
+      border: 1px solid var(--primary-color);
+      border-radius: 12px;
+      display: flex;
+      font-family: var(--font-family);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .cta-content {
+      flex: 1;
+      padding: 16px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cta-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .cta-description {
+      font-size: 13px;
+      color: var(--text-gray);
+      margin: 4px 0 8px;
+      max-width: 460px;
+      line-height: 1.4;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .cta-button {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    #button-1 {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    #button-2 {
+      background: transparent;
+      color: var(--text-gray);
+      border: 1.5px solid var(--text-gray);
+    }
+
+    .cta-button:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    /* ===== IMAGE SECTION ===== */
+    .cta-image-section {
+      width: 300px;
+      background-image: url('https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg');
+      background-size: cover;
+      background-position: top right;
+    }
+
+    /* ===== DISCLAIMER ===== */
+    .cta-disclaimer {
+      font-size: 11px;
+      color: #8a8a8a;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .cta-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .cta-content {
+        align-items: center;
+        text-align: center;
+        padding: 18px 16px 10px;
+      }
+
+      .cta-buttons {
+        justify-content: center;
+      }
+
+      .cta-image-section {
+        height: 120px;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- ===== SCHEMA: SOFTWARE APPLICATION (AI / GOOGLE SAFE) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Doctor Workspace",
+    "applicationCategory": "MedicalSoftware",
+    "operatingSystem": "Web",
+    "description": "Nền tảng phần mềm hỗ trợ bác sĩ và cơ sở y tế quản lý hoạt động khám chữa bệnh. Không cung cấp chẩn đoán hoặc chỉ định điều trị.",
+    "url": "https://doctorworkspace.com/",
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "Physicians"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+<aside class="cta-aside" aria-label="Công cụ hỗ trợ bác sĩ">
+  <p class="cta-context">
+    Dành cho bác sĩ và cơ sở y tế – công cụ hỗ trợ quản lý và vận hành hoạt động khám chữa bệnh.
+  </p>
+
+  <div class="cta-container">
+    <div class="cta-content">
+      <h2 class="cta-title">Miễn phí phiên bản “STANDARD”</h2>
+      <p class="cta-description">
+        Nền tảng tích hợp 9 bộ công cụ làm việc dành cho Bác sĩ. Tối ưu quy trình vận hành với Doctor Workspace.
+      </p>
+
+      <div class="cta-buttons">
+        <a id="button-1" class="cta-button"
+           href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
+           target="_blank" rel="nofollow sponsored">
+          ĐĂNG KÝ NGAY
+        </a>
+
+        <a id="button-2" class="cta-button"
+           href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
+           target="_blank" rel="nofollow sponsored">
+          Xem thêm
+        </a>
+      </div>
+    </div>
+
+    <div class="cta-image-section"></div>
+  </div>
+
+  <small class="cta-disclaimer">
+    *Không thay thế tư vấn y khoa, chẩn đoán hoặc chỉ định điều trị.*
+  </small>
+</aside>
+
+</body>
+</html>
