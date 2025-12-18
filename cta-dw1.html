@@ -18,7 +18,11 @@
   --font:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
-body{margin:0;font-family:var(--font);background:#fff}
+body{
+  margin:0;
+  font-family:var(--font);
+  background:#fff;
+}
 
 /* ===== WRAPPER ===== */
 aside.cta-aside{
@@ -30,7 +34,7 @@ aside.cta-aside{
 /* ===== CTA ===== */
 .cta-container{
   display:flex;
-  height:130px;
+  height:140px;
   border:1px solid var(--primary);
   border-radius:var(--radius);
   overflow:hidden;
@@ -57,7 +61,7 @@ aside.cta-aside{
   font-size:13px;
   font-weight:600;
   color:#1f2937;
-  margin:4px 0 2px;
+  margin:4px 0 4px;
 }
 
 .cta-desc{
@@ -65,22 +69,24 @@ aside.cta-aside{
   color:var(--gray);
   line-height:1.35;
   margin:0 0 8px;
-  max-width:480px;
+  max-width:500px;
 }
 
-/* ===== BENEFITS ===== */
-.cta-benefits{
+/* ===== FEATURES (PRODUCT SIGNAL) ===== */
+.cta-features{
   display:flex;
-  gap:14px;
+  flex-wrap:wrap;
+  gap:12px;
   font-size:11px;
   color:#374151;
   margin-bottom:8px;
 }
 
-.cta-benefits span::before{
-  content:"✔";
-  color:#16a34a;
-  margin-right:4px;
+.cta-features span::before{
+  content:"•";
+  color:var(--primary);
+  font-weight:700;
+  margin-right:6px;
 }
 
 /* ===== BUTTONS ===== */
@@ -113,7 +119,10 @@ aside.cta-aside{
   background:transparent;
 }
 
-.cta-button:hover{transform:translateY(-1px);opacity:.95}
+.cta-button:hover{
+  transform:translateY(-1px);
+  opacity:.95;
+}
 
 /* ===== IMAGE (DESKTOP ONLY) ===== */
 .cta-image{
@@ -138,9 +147,8 @@ aside.cta-aside{
 
   .cta-desc,.cta-sub{max-width:100%}
 
-  .cta-benefits{
+  .cta-features{
     justify-content:center;
-    flex-wrap:wrap;
     gap:10px;
   }
 
@@ -152,7 +160,7 @@ aside.cta-aside{
 
   .cta-button{flex:1}
 
-  /* ẨN ẢNH TRIỆT ĐỂ (FIX iOS) */
+  /* ẨN ẢNH TRIỆT ĐỂ (GIỐNG HÀNH VI CODE CŨ) */
   .cta-image{
     height:0 !important;
     min-height:0 !important;
@@ -184,25 +192,26 @@ aside.cta-aside{
 <aside class="cta-aside">
   <div class="cta-container">
     <div class="cta-content">
-      <h2 class="cta-title">Miễn phí phiên bản “STANDARD”</h2>
-      <div class="cta-sub">Giảm tải công việc – Tối ưu vận hành</div>
-
+      <h2 class="cta-title">Miễn phí sử dụng Doctor Workspace/h2>
       <p class="cta-desc">
-        Doctor Workspace hỗ trợ quản lý công việc hằng ngày hiệu quả hơn,
-        hạn chế sai sót hành chính và tiết kiệm thời gian.
+        Doctor Workspace tích hợp nhiều tính năng giúp tối ưu quản lý, kết nối dịch vụ y tế
+        và nâng cao hiệu quả làm việc hằng ngày.
       </p>
 
-      <div class="cta-benefits">
-        <span>Tiết kiệm thời gian</span>
-        <span>Giảm rủi ro vận hành</span>
-        <span>Quy trình rõ ràng</span>
+      <div class="cta-features">
+        <span>Quản lý phòng khám</span>
+        <span>Đặt khám thông minh</span>
+        <span>Tư vấn trực tuyến</span>
+        <span>Khóa học CME</span>
+        <span>AI hỗ trợ bác sĩ</span>
+        <span>Hệ sinh thái y tế</span>
       </div>
 
       <div class="cta-buttons">
         <a id="btn-main" class="cta-button"
            href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
            target="_blank" rel="nofollow sponsored">
-          DÙNG MIỄN PHÍ
+          ĐĂNG KÝ NGAY
         </a>
 
         <a id="btn-sub" class="cta-button"
