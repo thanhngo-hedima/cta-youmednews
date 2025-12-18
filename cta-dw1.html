@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Doctor Workspace CTA</title>
 
 <!-- FONT -->
@@ -12,35 +11,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= GLOBAL ================= */
 :root{
   --primary:#0248c4;
   --gray:#626262;
-  --border:#0248c4;
   --radius:12px;
   --font:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
 body{margin:0;font-family:var(--font);background:#fff}
 
-/* ================= SEMANTIC ================= */
+/* ===== WRAPPER ===== */
 aside.cta-aside{
   max-width:800px;
   margin:32px auto;
   padding:0 12px;
 }
 
-.cta-context{
-  font-size:13px;
-  color:var(--gray);
-  margin-bottom:8px;
-}
-
-/* ================= CTA ================= */
+/* ===== CTA ===== */
 .cta-container{
   display:flex;
   height:130px;
-  border:1px solid var(--border);
+  border:1px solid var(--primary);
   border-radius:var(--radius);
   overflow:hidden;
   background:#fff;
@@ -77,7 +68,7 @@ aside.cta-aside{
   max-width:480px;
 }
 
-/* ================= BENEFITS ================= */
+/* ===== BENEFITS ===== */
 .cta-benefits{
   display:flex;
   gap:14px;
@@ -92,7 +83,7 @@ aside.cta-aside{
   margin-right:4px;
 }
 
-/* ================= BUTTONS ================= */
+/* ===== BUTTONS ===== */
 .cta-buttons{
   display:flex;
   gap:10px;
@@ -124,7 +115,7 @@ aside.cta-aside{
 
 .cta-button:hover{transform:translateY(-1px);opacity:.95}
 
-/* ================= IMAGE (DESKTOP ONLY) ================= */
+/* ===== IMAGE (DESKTOP ONLY) ===== */
 .cta-image{
   width:320px;
   min-width:280px;
@@ -132,15 +123,7 @@ aside.cta-aside{
     no-repeat top right / cover;
 }
 
-/* ================= DISCLAIMER ================= */
-.cta-disclaimer{
-  display:block;
-  margin-top:6px;
-  font-size:11px;
-  color:#8a8a8a;
-}
-
-/* ================= <= 797px ================= */
+/* ===== <= 797px ===== */
 @media(max-width:797px){
   .cta-container{
     height:auto;
@@ -178,7 +161,7 @@ aside.cta-aside{
   }
 }
 
-/* ================= <= 400px ================= */
+/* ===== <= 400px ===== */
 @media(max-width:400px){
   .cta-title{font-size:16px}
   .cta-desc{font-size:11px}
@@ -198,22 +181,21 @@ aside.cta-aside{
 
 <body>
 
-<aside class="cta-aside" aria-label="Công cụ hỗ trợ bác sĩ">
-
+<aside class="cta-aside">
   <div class="cta-container">
     <div class="cta-content">
-      <h2 class="cta-title">Miễn phí dùng thử Dortor Workspace</h2>
-      <div class="cta-sub">Giảm tải công việc – Tối ưu vận hành phòng khám</div>
+      <h2 class="cta-title">Miễn phí phiên bản “STANDARD”</h2>
+      <div class="cta-sub">Giảm tải công việc – Tối ưu vận hành</div>
 
       <p class="cta-desc">
-        Doctor Workspace giúp bác sĩ quản lý công việc hằng ngày hiệu quả hơn, hạn chế sai sót hành chính
-        và tiết kiệm thời gian cho chuyên môn.
+        Doctor Workspace hỗ trợ quản lý công việc hằng ngày hiệu quả hơn,
+        hạn chế sai sót hành chính và tiết kiệm thời gian.
       </p>
 
       <div class="cta-benefits">
         <span>Tiết kiệm thời gian</span>
         <span>Giảm rủi ro vận hành</span>
-        <span>Dành riêng cho bác sĩ</span>
+        <span>Quy trình rõ ràng</span>
       </div>
 
       <div class="cta-buttons">
@@ -233,12 +215,7 @@ aside.cta-aside{
 
     <div class="cta-image"></div>
   </div>
-
-  <small class="cta-disclaimer">
-    *Không cung cấp chẩn đoán, kê đơn hoặc chỉ định điều trị.*
-  </small>
 </aside>
 
 </body>
 </html>
-
