@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CTA Doctor Workspace</title>
 
-  <!-- FONT: INTER (RẤT DỄ ĐỌC, CHUẨN Y TẾ & SAAS) -->
+  <!-- FONT: INTER -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ================= GLOBAL ================= */
     :root {
-      --section-width-desktop: 798px;
-      --section-height-desktop: 120px;
-
       --primary-color: #0248c4;
       --text-gray: #626262;
-
+      --border-radius: 12px;
       --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    /* ===== SEMANTIC BOX ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family);
+      background: #ffffff;
+    }
+
+    /* ================= SEMANTIC ASIDE ================= */
     aside.cta-aside {
+      max-width: 798px;
       margin: 30px auto;
-      max-width: var(--section-width-desktop);
+      padding: 0 10px;
+      box-sizing: border-box;
     }
 
     .cta-context {
       font-size: 13px;
       color: var(--text-gray);
       margin-bottom: 8px;
-      text-align: left;
     }
 
-    /* ===== CTA CONTAINER ===== */
+    /* ================= CTA CONTAINER ================= */
     .cta-container {
       width: 100%;
-      height: var(--section-height-desktop);
-      border: 1px solid var(--primary-color);
-      border-radius: 12px;
+      height: 120px;                 /* DESKTOP FIXED HEIGHT (CODE CŨ) */
       display: flex;
-      font-family: var(--font-family);
+      border: 1px solid var(--primary-color);
+      border-radius: var(--border-radius);
       overflow: hidden;
       background: #ffffff;
     }
 
     .cta-content {
       flex: 1;
-      padding: 16px 28px;
+      padding: 15px 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -59,20 +64,21 @@
       font-weight: 700;
       color: var(--primary-color);
       margin: 0;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .cta-description {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-gray);
-      margin: 4px 0 8px;
+      margin: 4px 0 6px;
       max-width: 460px;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     .cta-buttons {
       display: flex;
       gap: 10px;
+      margin-top: 4px;
     }
 
     .cta-button {
@@ -100,66 +106,90 @@
     }
 
     .cta-button:hover {
-      opacity: 0.95;
       transform: translateY(-1px);
+      opacity: 0.95;
     }
 
-    /* ===== IMAGE SECTION ===== */
+    /* ================= IMAGE (DESKTOP ONLY) ================= */
     .cta-image-section {
-      width: 300px;
+      width: 320px;
+      min-width: 280px;
       background-image: url('https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg');
       background-size: cover;
       background-position: top right;
+      background-repeat: no-repeat;
     }
 
-    /* ===== DISCLAIMER ===== */
+    /* ================= DISCLAIMER ================= */
     .cta-disclaimer {
+      display: block;
+      margin-top: 6px;
       font-size: 11px;
       color: #8a8a8a;
-      margin-top: 6px;
-      display: block;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
+    /* ================= TABLET & MOBILE (<= 797px) ================= */
+    @media (max-width: 797px) {
       .cta-container {
-        flex-direction: column;
         height: auto;
+        flex-direction: column;
       }
 
       .cta-content {
+        padding: 20px 20px 10px;
         align-items: center;
         text-align: center;
-        padding: 18px 16px 10px;
+      }
+
+      .cta-title,
+      .cta-description {
+        max-width: 100%;
       }
 
       .cta-buttons {
+        width: 60%;
+        max-width: 400px;
+        margin: 10px auto;
         justify-content: center;
       }
 
+      .cta-button {
+        flex-grow: 1;
+      }
+
+      /* 🔴 QUAN TRỌNG: ẨN ẢNH (GIỐNG CODE CŨ) */
       .cta-image-section {
-        height: 120px;
-        width: 100%;
+        display: none !important;
+      }
+    }
+
+    /* ================= MOBILE SMALL (<= 400px) ================= */
+    @media (max-width: 400px) {
+      .cta-content {
+        padding: 15px 15px 5px;
+      }
+
+      .cta-title {
+        font-size: 16px;
+      }
+
+      .cta-description {
+        font-size: 11px;
+      }
+
+      .cta-buttons {
+        width: 90%;
+        gap: 5px;
+      }
+
+      .cta-button {
+        font-size: 12px;
+        padding: 10px 8px;
+        flex-grow: 1;
+        white-space: nowrap;
       }
     }
   </style>
-
-  <!-- ===== SCHEMA: SOFTWARE APPLICATION (AI / GOOGLE SAFE) ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Doctor Workspace",
-    "applicationCategory": "MedicalSoftware",
-    "operatingSystem": "Web",
-    "description": "Nền tảng phần mềm hỗ trợ bác sĩ và cơ sở y tế quản lý hoạt động khám chữa bệnh. Không cung cấp chẩn đoán hoặc chỉ định điều trị.",
-    "url": "https://doctorworkspace.com/",
-    "audience": {
-      "@type": "MedicalAudience",
-      "audienceType": "Physicians"
-    }
-  }
-  </script>
 </head>
 
 <body>
@@ -177,20 +207,29 @@
       </p>
 
       <div class="cta-buttons">
-        <a id="button-1" class="cta-button"
-           href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
-           target="_blank" rel="nofollow sponsored">
+        <a
+          id="button-1"
+          class="cta-button"
+          href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
+          target="_blank"
+          rel="nofollow sponsored"
+        >
           ĐĂNG KÝ NGAY
         </a>
 
-        <a id="button-2" class="cta-button"
-           href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
-           target="_blank" rel="nofollow sponsored">
+        <a
+          id="button-2"
+          class="cta-button"
+          href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
+          target="_blank"
+          rel="nofollow sponsored"
+        >
           Xem thêm
         </a>
       </div>
     </div>
 
+    <!-- IMAGE: DESKTOP ONLY -->
     <div class="cta-image-section"></div>
   </div>
 
