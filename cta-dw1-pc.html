@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* =========================
        VARIABLES & RESET
@@ -18,51 +19,26 @@
     body {
       margin: 0;
       padding: 0;
-      overflow: hidden; /* Quan trọng cho iframe */
+      font-family: var(--font);
       background: transparent;
+      /* Không dùng overflow: hidden ở body nếu muốn đo height chính xác */
     }
 
     /* =========================
        CONTAINER
     ========================= */
-/* Container mặc định cho PC lớn */
-.pc-cta-container {
-  max-width: 900px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: row; /* Nằm ngang */
-  /* ... các thuộc tính khác giữ nguyên ... */
-}
-
-/* Khi màn hình nhỏ hơn 1000px */
-@media (max-width: 1000px) {
-  .pc-cta-container {
-    flex-direction: column; /* Chuyển thành hàng dọc */
-    max-width: 600px; /* Thu hẹp lại để cân đối khi nằm dọc */
-  }
-
-  .pc-actions {
-    flex: 1;
-    width: 100%;
-    border-left: none; /* Bỏ gạch dọc bên trái */
-    border-top: 1px dashed #e2e8f0; /* Thêm gạch ngang phía trên */
-    padding: 24px;
-    background: #f8fafc; /* Đổi màu nền nhẹ để tách biệt phần nút */
-  }
-
-  .pc-content {
-    flex: 1;
-    padding: 24px;
-  }
-
-  .pc-bg-visual-img {
-    display: none; /* Ẩn ảnh nền để tránh rối mắt khi chuyển dọc */
-  }
-  
-  .pc-overlay {
-    background: #ffffff; /* Bỏ gradient, dùng nền trắng thuần */
-  }
-}
+    .pc-cta-container {
+      max-width: 900px;
+      margin: 20px auto;
+      display: flex; /* Quan trọng: Kích hoạt flexbox */
+      flex-direction: row;
+      background: #ffffff;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid #e2e8f0;
+    }
 
     .pc-bg-visual-img {
       position: absolute;
@@ -88,10 +64,10 @@
     }
 
     /* =========================
-       CONTENT
+       CONTENT (Left Side)
     ========================= */
     .pc-content {
-      flex: 0.8;
+      flex: 1.2;
       padding: 30px 40px;
       position: relative;
       z-index: 2;
@@ -107,125 +83,130 @@
       border-radius: 50px;
       margin-bottom: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
     }
 
     .pc-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--text-main);
-      line-height: 1.25;
-      margin-bottom: 10px;
+      line-height: 1.3;
+      margin-bottom: 12px;
     }
 
     .pc-title span { color: var(--primary); }
-    
-    /* Sửa lỗi màu xanh lá cây */
-    .pc-title .text-highlight-green {
-      color: var(--success-green) !important;
-      font-weight: 800;
-    }
+    .pc-title .text-highlight-green { color: var(--success-green) !important; }
 
     .pc-desc {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-gray);
       line-height: 1.6;
-      margin-bottom: 24px;
-      max-width: 480px;
+      margin-bottom: 20px;
     }
 
-    /* Sửa lỗi không in đậm */
     .pc-desc strong {
-      font-weight: 800 !important;
+      font-weight: 700;
       color: var(--text-main);
     }
 
-    /* =========================
-       FEATURES
-    ========================= */
     .pc-features {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px 20px;
+      gap: 10px;
     }
 
     .pc-feat-item {
       display: flex;
       align-items: center;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       color: #334155;
     }
 
     .pc-feat-item svg {
-      width: 18px;
-      height: 18px;
-      margin-right: 8px;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
       color: #10b981;
       flex-shrink: 0;
     }
 
     /* =========================
-       ACTIONS
+       ACTIONS (Right Side)
     ========================= */
     .pc-actions {
-      flex: 0.4;
+      flex: 0.8;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 30px;
       z-index: 2;
       position: relative;
       border-left: 1px dashed #e2e8f0;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
     }
 
     .btn-pc {
-      width: 180px;
-      padding: 12px 20px;
-      border-radius: 12px;
+      width: 100%;
+      max-width: 200px;
+      padding: 12px;
+      border-radius: 10px;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
       text-align: center;
-      transition: all 0.25s ease;
+      transition: 0.3s;
       margin-bottom: 10px;
     }
 
     .btn-pc-primary {
       background: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 8px 20px rgba(2, 72, 196, 0.2);
-    }
-
-    .btn-pc-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 72, 196, 0.2);
     }
 
     .btn-pc-secondary {
       background: #f8fafc;
       color: #475569;
-      border: 1.5px solid #e2e8f0;
+      border: 1px solid #e2e8f0;
     }
 
     .pc-proof {
-      margin-top: 8px;
       font-size: 11px;
       color: #16a34a;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       font-weight: 600;
+    }
+
+    /* =========================
+       RESPONSIVE (Mobile)
+    ========================= */
+    @media (max-width: 768px) {
+      .pc-cta-container {
+        flex-direction: column;
+        margin: 10px;
+      }
+      .pc-bg-visual-img { display: none; }
+      .pc-overlay { background: #fff; }
+      .pc-content { padding: 20px; }
+      .pc-title { font-size: 20px; }
+      .pc-actions {
+        border-left: none;
+        border-top: 1px dashed #e2e8f0;
+        padding: 20px;
+        background: #f8fafc;
+      }
+      .pc-features { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
 <aside class="pc-cta-container">
-  <img src="https://youmed.vn/tin-tuc/wp-content/uploads/2025/10/bannerR4_adapt970x90@4x-1.png" alt="" class="pc-bg-visual-img" />
+  <img src="https://youmed.vn/tin-tuc/wp-content/uploads/2025/10/bannerR4_adapt970x90@4x-1.png" alt="Doctor Workspace" class="pc-bg-visual-img" />
   <div class="pc-overlay"></div>
 
   <div class="pc-content">
@@ -236,7 +217,7 @@
     </div>
 
     <p class="pc-desc">
-      <strong>Doctor Workspace</strong> là bộ công cụ giúp các <strong>Y bác sĩ</strong> quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành.
+      <strong>Doctor Workspace</strong> là bộ công cụ giúp các <strong>Y bác sĩ</strong> quản lý phòng khám, số hóa bệnh án và tư vấn từ xa.
     </p>
 
     <div class="pc-features">
@@ -246,15 +227,7 @@
       </div>
       <div class="pc-feat-item">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Đặt khám thông minh
-      </div>
-      <div class="pc-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         Bệnh án điện tử EMR
-      </div>
-      <div class="pc-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Đào tạo CME
       </div>
     </div>
   </div>
@@ -270,46 +243,23 @@
 </aside>
 
 <script>
-(function() {
-  function sendHeight() {
-    // Đo chiều cao thực tế của thẻ aside chứa banner
-    var banner = document.querySelector('.pc-cta-container');
-    if (banner) {
-      // Cộng thêm khoảng 20-30px cho bóng đổ (box-shadow) để không bị mất mép dưới
-      var height = banner.offsetHeight + 30; 
-      
-      window.parent.postMessage({
-        type: "dw-resize",
-        height: height
-      }, "*");
+  (function() {
+    function sendHeight() {
+      const container = document.querySelector('.pc-cta-container');
+      if (container) {
+        // Sử dụng getBoundingClientRect để lấy thông số chính xác bao gồm cả scale/margin
+        const height = Math.ceil(container.getBoundingClientRect().height + 40); 
+        window.parent.postMessage({ type: "dw-resize", height: height }, "*");
+      }
     }
-  }
 
-  // Gửi tin nhắn ở nhiều thời điểm để tránh sai sót
-  window.addEventListener('load', sendHeight); // Khi web tải xong
-  window.addEventListener('resize', sendHeight); // Khi người dùng thu phóng trình duyệt
-  
-  // Gửi thêm một lần sau 1 giây (đề phòng ảnh banner nặng tải chậm)
-  setTimeout(sendHeight, 1000);
-})();
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    // Gửi lại chiều cao sau khi fonts và ảnh đã render xong hoàn toàn
+    setTimeout(sendHeight, 600);
+    setTimeout(sendHeight, 2000);
+  })();
 </script>
-  <script>
-  function sendHeight() {
-    // Đo chiều cao thực tế của toàn bộ container sau khi đã xoay dọc
-    const container = document.querySelector('.pc-cta-container');
-    if (container) {
-      // OffsetHeight tính toán chính xác kích thước hiện tại của khối
-      const height = container.offsetHeight + 40; 
-      window.parent.postMessage({ type: "dw-resize", height: height }, "*");
-    }
-  }
 
-  // Lắng nghe sự kiện load và đặc biệt là sự kiện RESIZE
-  window.addEventListener('load', sendHeight);
-  window.addEventListener('resize', sendHeight); 
-  
-  // Chạy lại sau vài giây để chắc chắn giao diện đã ổn định
-  setTimeout(sendHeight, 500);
-  setTimeout(sendHeight, 2000);
-</script>
+</body>
 </html>
