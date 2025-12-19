@@ -3,185 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doctor Workspace CTA</title>
+<title>Doctor Workspace Modern CTA</title>
 
-<!-- FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --primary:#0248c4;
-  --gray:#626262;
-  --radius:12px;
-  --font:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+:root {
+  --primary: #0248c4;
+  --primary-dark: #013593;
+  --accent: #ff6b00; /* Màu cam để tạo điểm nhấn trigger */
+  --bg-light: #f8faff;
+  --text-main: #1a202c;
+  --text-gray: #4a5568;
+  --radius: 20px;
+  --font: 'Plus Jakarta Sans', sans-serif;
 }
 
-body{
-  margin:0;
-  font-family:var(--font);
-  background:#fff;
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* ===== WRAPPER ===== */
-aside.cta-aside{
-  max-width:800px;
-  margin:32px auto;
-  padding:0 12px;
+aside.cta-aside {
+  max-width: 900px;
+  width: 100%;
+  padding: 20px;
 }
 
-/* ===== CTA ===== */
-.cta-container{
-  display:flex;
-  height:140px;
-  border:1px solid var(--primary);
-  border-radius:var(--radius);
-  overflow:hidden;
-  background:#fff;
+/* ===== MODERN CONTAINER ===== */
+.cta-container {
+  display: flex;
+  background: #ffffff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(2, 72, 196, 0.08);
+  border: 1px solid rgba(2, 72, 196, 0.05);
+  position: relative;
+  transition: transform 0.3s ease;
 }
 
-.cta-content{
-  flex:1;
-  padding:16px 28px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+.cta-container:hover {
+    transform: translateY(-5px);
 }
 
-.cta-title{
-  font-size:20px;
-  font-weight:700;
-  color:var(--primary);
-  margin:0;
-  line-height:1.25;
+/* Decor Circle */
+.cta-container::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(2, 72, 196, 0.03);
+    border-radius: 50%;
+    z-index: 0;
 }
 
-.cta-sub{
-  font-size:13px;
-  font-weight:600;
-  color:#1f2937;
-  margin:4px 0 4px;
+.cta-content {
+  flex: 1.2;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
 }
 
-.cta-desc{
-  font-size:12px;
-  color:var(--gray);
-  line-height:1.35;
-  margin:0 0 8px;
-  max-width:500px;
+/* Badge Lời chào */
+.cta-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(2, 72, 196, 0.1);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* ===== FEATURES (PRODUCT SIGNAL) ===== */
-.cta-features{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  font-size:11px;
-  color:#374151;
-  margin-bottom:8px;
+.cta-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
-.cta-features span::before{
-  content:"•";
-  color:var(--primary);
-  font-weight:700;
-  margin-right:6px;
+.cta-title span {
+    color: var(--primary);
+}
+
+.cta-desc {
+  font-size: 15px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin: 16px 0 24px;
+}
+
+/* ===== FEATURES HOÀN TOÀN MỚI ===== */
+.cta-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+  margin-bottom: 30px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.feature-item svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  color: #10b981; /* Màu xanh lá tạo cảm giác tin cậy */
 }
 
 /* ===== BUTTONS ===== */
-.cta-buttons{
-  display:flex;
-  gap:10px;
+.cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.cta-button{
-  font-size:11px;
-  font-weight:600;
-  padding:8px 18px;
-  border-radius:10px;
-  text-decoration:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  white-space:nowrap;
-  transition:.2s;
+.cta-button {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#btn-main{
-  background:var(--primary);
-  color:#fff;
+#btn-main {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(2, 72, 196, 0.2);
 }
 
-#btn-sub{
-  border:1.5px solid var(--gray);
-  color:var(--gray);
-  background:transparent;
+#btn-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(2, 72, 196, 0.3);
 }
 
-.cta-button:hover{
-  transform:translateY(-1px);
-  opacity:.95;
+#btn-sub {
+  color: var(--primary);
+  font-weight: 600;
+  padding-left: 0;
 }
 
-/* ===== IMAGE (DESKTOP ONLY) ===== */
-.cta-image{
-  width:320px;
-  min-width:280px;
-  background:url("https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg")
-    no-repeat top right / cover;
+#btn-sub:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
 }
 
-/* ===== <= 797px ===== */
-@media(max-width:797px){
-  .cta-container{
-    height:auto;
-    flex-direction:column;
+/* ===== IMAGE ===== */
+.cta-image {
+  flex: 0.8;
+  background: url("https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg") no-repeat center center / cover;
+  position: relative;
+  min-height: 300px;
+}
+
+/* Overlay cho ảnh chuyên nghiệp hơn */
+.cta-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 850px) {
+  .cta-container {
+    flex-direction: column;
+  }
+  .cta-image {
+    height: 200px;
+    order: -1; /* Ảnh lên đầu để gây ấn tượng thị giác */
+  }
+  .cta-image::after {
+    background: linear-gradient(to top, #ffffff, transparent);
+  }
+  .cta-content {
+    padding: 30px;
+    text-align: center;
+    align-items: center;
+  }
+  .cta-badge, .feature-item {
+      justify-content: center;
+  }
+  .cta-features {
+      grid-template-columns: 1fr;
+      gap: 8px;
+  }
+  .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+  }
+  .cta-button {
+      width: 100%;
+  }
+}
+/* ===== TỐI ƯU MOBILE CHI TIẾT ===== */
+@media(max-width: 768px) {
+  aside.cta-aside {
+    padding: 10px; /* Giảm padding ngoài để tăng không gian hiển thị */
   }
 
-  .cta-content{
-    padding:18px 18px 10px;
-    text-align:center;
-    align-items:center;
+  .cta-container {
+    flex-direction: column;
+    border-radius: 16px; /* Bo góc nhẹ hơn trên mobile cho cân đối */
   }
 
-  .cta-desc,.cta-sub{max-width:100%}
-
-  .cta-features{
-    justify-content:center;
-    gap:10px;
+  .cta-image {
+    height: 180px; /* Giảm chiều cao ảnh để tránh chiếm hết màn hình đầu tiên */
+    min-height: 180px;
+    order: -1;
   }
 
-  .cta-buttons{
-    width:60%;
-    max-width:400px;
-    margin:10px auto 0;
+  .cta-content {
+    padding: 24px 20px; /* Giảm padding bên trong */
+    text-align: center;
+    align-items: center;
   }
 
-  .cta-button{flex:1}
+  .cta-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
 
-  /* ẨN ẢNH TRIỆT ĐỂ (GIỐNG HÀNH VI CODE CŨ) */
-  .cta-image{
-    height:0 !important;
-    min-height:0 !important;
-    background:none !important;
-    overflow:hidden !important;
+  .cta-title {
+    font-size: 22px; /* Giảm size chữ tiêu đề một chút để không bị xuống dòng quá nhiều */
+  }
+
+  .cta-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 12px 0 20px;
+  }
+
+  .cta-features {
+    display: flex;
+    flex-direction: column; /* Chuyển tính năng thành danh sách dọc để dễ đọc */
+    align-items: flex-start; /* Căn lề trái cho tính năng để trông chuyên nghiệp hơn */
+    gap: 8px;
+    width: 100%;
+    max-width: 250px; /* Giới hạn để căn giữa khối */
+    margin: 0 auto 24px;
+  }
+
+  .cta-buttons {
+    flex-direction: column; /* Nút bấm chồng lên nhau */
+    width: 100%;
+    gap: 12px;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 16px; /* Tăng độ dày nút để dễ chạm */
+    font-size: 15px; /* Chữ to rõ ràng */
+  }
+
+  #btn-sub {
+    padding: 10px;
+    border: 1px solid #e2e8f0; /* Thêm viền nhẹ cho nút phụ trên mobile để phân biệt */
+    border-radius: 14px;
+    background: #f8faff;
   }
 }
 
-/* ===== <= 400px ===== */
-@media(max-width:400px){
-  .cta-title{font-size:16px}
-  .cta-desc{font-size:11px}
-
-  .cta-buttons{
-    width:90%;
-    gap:6px;
+/* Cho màn hình cực nhỏ < 350px */
+@media(max-width: 350px) {
+  .cta-title {
+    font-size: 19px;
   }
-
-  .cta-button{
-    font-size:12px;
-    padding:10px 8px;
+  .cta-image {
+    height: 150px;
   }
 }
 </style>
@@ -192,32 +308,49 @@ aside.cta-aside{
 <aside class="cta-aside">
   <div class="cta-container">
     <div class="cta-content">
-      <h2 class="cta-title"><h2>Miễn phí dùng thử HÔM NAY</h2>
+      <div class="cta-badge">🔥 Ưu đãi có hạn</div>
+      <h2 class="cta-title">Nâng tầm quản lý,<br><span>Miễn phí dùng thử ngay</span></h2>
+      
       <p class="cta-desc">
-        Doctor Workspace tích hợp nhiều tính năng giúp tối ưu quản lý, kết nối dịch vụ y tế
-        và nâng cao hiệu quả làm việc hằng ngày.
+        Hệ sinh thái số hóa dành riêng cho Bác sĩ giúp tối ưu vận hành phòng khám và kết nối bệnh nhân hiệu quả hơn.
       </p>
 
       <div class="cta-features">
-        <span>Quản lý phòng khám</span>
-        <span>Đặt khám thông minh</span>
-        <span>Tư vấn trực tuyến</span>
-        <span>Khóa học CME</span>
-        <span>AI hỗ trợ bác sĩ</span>
+        <div class="feature-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            Quản lý phòng khám 4.0
+        </div>
+        <div class="feature-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            Tư vấn online từ xa
+        </div>
+        <div class="feature-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            AI hỗ trợ chẩn đoán
+        </div>
+        <div class="feature-item">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            Cập nhật kiến thức CME
+        </div>
       </div>
 
       <div class="cta-buttons">
         <a id="btn-main" class="cta-button"
            href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
            target="_blank" rel="nofollow sponsored">
-          ĐĂNG KÝ NGAY
+          BẮT ĐẦU MIỄN PHÍ NGAY
         </a>
 
         <a id="btn-sub" class="cta-button"
            href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
            target="_blank" rel="nofollow sponsored">
-          Xem chi tiết
+          Tìm hiểu thêm 
+          <svg style="width:16px; margin-left:5px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
+      </div>
+
+      <div style="margin-top: 20px; font-size: 11px; color: #94a3b8; font-style: italic;">
+          * Hơn 5.000+ bác sĩ đã đăng ký sử dụng trong tháng này.
       </div>
     </div>
 
@@ -227,5 +360,3 @@ aside.cta-aside{
 
 </body>
 </html>
-
-
