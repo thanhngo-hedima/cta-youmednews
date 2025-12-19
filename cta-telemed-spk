@@ -1,0 +1,333 @@
+<html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #BF416F;
+    --primary-dark: #8C3048;
+    --text-main: #BF416F;
+    --text-gray: #595048;
+    --font: 'Inter', sans-serif;
+  }
+
+  /* CONTAINER CHÍNH - GIỚI HẠN MOBILE */
+  .mobile-cta-card {
+    max-width: 600px; /* Độ rộng tối ưu cho các dòng Smartphone */
+    margin: 20px auto;
+    font-family: var(--font);
+    background: #ffffff;
+    border-radius: 24px;
+    border: 2px solid rgba(191, 65, 111, 1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.);
+    overflow: hidden;
+    position: relative;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  /* HIỆU ỨNG NỀN CSS (SIÊU NHẸ) */
+  .mobile-cta-card::before {
+    content: "";
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 120px; height: 120px;
+    background: rgba(2, 72, 196, 0.03);
+    border-radius: 50%;
+  }
+
+  /* BADGE */
+  .m-badge {
+    display: inline-block;
+    background: rgba(217, 154, 177, 0.2);
+    color: var(--primary-dark);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+    .m-badge-2 {
+    display: inline-block;
+    text-align: left;
+    background: rgba(289, 154, 177,0);
+    color: #595048;
+    font-size: 14px;
+    font-weight: 800;
+    padding: auto auto;
+    letter-spacing: 0.5px;
+    margin-bottom: auto;
+  }
+
+  /* TIÊU ĐỀ */
+  .m-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.35;
+    margin: 0 0 12px 0;
+  }
+  .m-title span { color: var(--primary); }
+
+  /* MÔ TẢ */
+  .m-desc {
+    font-size: 14.5px;
+    color: var(--text-gray);
+    line-height: 1.55;
+    margin-bottom: 24px;
+    padding: 0 10px;
+  }
+
+  /* GRID TÍNH NĂNG (2 CỘT GỌN GÀNG) */
+  .m-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 30px;
+    text-align: left;
+  }
+
+  .m-feat-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+  }
+
+  .m-feat-item svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    color: #10b981;
+    flex-shrink: 0;
+  }
+
+  /* NHÓM NÚT BẤM - CĂN GIỮ, KHÔNG TRÀN VIỀN */
+  .m-btn-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-m {
+    width: 85%; /* Thu gọn nút, không sát mép */
+    max-width: 280px;
+    padding: 15px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    display: block;
+    box-sizing: content-box;
+  }
+
+  .btn-m:active { transform: scale(0.97); }
+
+  .btn-m-primary {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(2, 72, 196, 0);
+  }
+
+  .btn-m-secondary {
+    background: #ffffff;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+  }
+
+  /* SOCIAL PROOF */
+  .m-proof {
+    margin-top: 18px;
+    font-size: 11px;
+    color: #94a3b8;
+    font-style: italic;
+  }
+  
+  /* Desktop breakpoint */
+@media (min-width: 797px) {
+
+  .mobile-cta-card {
+    /* Giới hạn kích thước desktop */
+    max-width: 600px;
+    max-height: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(191, 65, 111, 1);
+    position: relative;
+
+    /* Chuyển layout ngang */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 18px 22px;
+    text-align: left;
+  }
+  .desktop-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+  }
+
+  /* Ẩn badge trên desktop cho gọn */
+  .m-badge {
+  	display: inline-block;
+    background: rgba(217, 154, 177, 0.1);
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: auto;
+  }
+
+  /* Gom khối text bên trái */
+  .m-title {
+    font-size: 18px;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  /* Ẩn mô tả dài */
+  .m-desc {
+    display: none;
+  }
+
+  /* Ẩn feature grid (desktop CTA không cần chi tiết) */
+  .m-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-bottom: auto;
+    flex: unset;
+  }
+
+  /* Nhóm nội dung trái */
+  .desktop-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* Nhóm nút bên phải */
+  .m-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-self: flex-start;
+  }
+
+  .btn-m {
+    width: 85%;
+    max-width: auto;
+    padding: auto auto;
+    font-size: 13px;
+    white-space: nowrap;
+	border-radius: 8px;
+    text-align: center;
+    /* Debug nút */
+    border: 1px solid #BF416F;
+  }
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="mobile-cta-card">
+
+  <div class="desktop-row">
+
+    <!-- CỘT TRÁI -->
+    <div class="desktop-left">
+
+      <span class="m-badge">Khám bệnh tực tuyến - Sản Phụ khoa</span>
+
+      <h3 class="m-title">
+        NHANH CHÓNG - TIỆN LỢI - AN TOÀN<br>
+        <span class="m-badge-2">Kết nối dễ dàng, không cần chờ đợi</span>
+      </h3>
+
+<div class="m-features">
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+      </svg>Hơn 1000 Bác sĩ khám trực tuyến</div>
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+      </svg>Bảo mật thông tin tuyệt đối</div>
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+      </svg>Xem ngay Kết quả Mọi lúc - Mọi nơi</div>
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+      </svg>Thủ tục đơn giản, tiết kiệm thời gian</div>
+</div>
+
+    </div>
+
+    <!-- CỘT PHẢI -->
+    <div class="m-btn-group">
+      <a href="https://app.ymd.vn/49q9gm" class="btn-m btn-m-primary" target="_blank">GỌI NGAY</a>
+      <a href="https://app.ymd.vn/0vaxw9" class="btn-m btn-m-secondary" target="_blank">CHAT NGAY</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+(function () {
+  function getH() {
+    return Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    );
+  }
+
+  function send() {
+    window.parent.postMessage({ type: "dw-resize", height: getH() }, "*");
+  }
+
+  window.addEventListener("load", () => {
+    send();
+    setTimeout(send, 200);
+    setTimeout(send, 800);
+    setTimeout(send, 1500);
+  });
+
+  window.addEventListener("resize", () => {
+    send();
+    setTimeout(send, 200);
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      send();
+      setTimeout(send, 200);
+    });
+  }
+})();
+</script>
+
+</div>
+</body>
+</html>
