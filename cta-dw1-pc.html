@@ -27,7 +27,7 @@
        CONTAINER
     ========================= */
     .pc-cta-container {
-      max-width: 900px;
+      max-width: 800px; /* Tăng nhẹ max-width để fit với ngưỡng mới */
       margin: 20px auto;
       display: flex;
       flex-direction: row;
@@ -89,7 +89,7 @@
     }
 
     .pc-title {
-      font-size: 24px;
+      font-size: 26px; /* Tăng size chữ tiêu đề một chút cho PC */
       font-weight: 800;
       color: var(--text-main);
       line-height: 1.3;
@@ -114,13 +114,13 @@
     .pc-features {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
     .pc-feat-item {
       display: flex;
       align-items: center;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       color: #334155;
     }
@@ -137,7 +137,7 @@
        ACTIONS (Right Side)
     ========================= */
     .pc-actions {
-      flex: 0.8;
+      flex: 0.7; /* Điều chỉnh tỷ lệ cho cân đối */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -153,14 +153,14 @@
     .btn-pc {
       width: 100%;
       max-width: 220px;
-      padding: 12px;
+      padding: 13px;
       border-radius: 10px;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
       text-align: center;
       transition: 0.3s;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .btn-pc-primary {
@@ -176,52 +176,54 @@
     }
 
     .pc-proof {
-      font-size: 11px;
+      font-size: 12px;
       color: #16a34a;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       font-weight: 600;
     }
 
-    /* =========================
-       RESPONSIVE (Tablet & Mobile)
-    ========================= */
-    @media (max-width: 850px) {
+    /* =====================================
+       RESPONSIVE (Threshold fix: 1000px)
+    ===================================== */
+    @media (max-width: 800px) {
       .pc-cta-container {
         flex-direction: column;
-        margin: 10px;
+        margin: 15px;
         text-align: center;
       }
       .pc-bg-visual-img { display: none; }
       .pc-overlay { background: #fff; }
       
       .pc-content { 
-        padding: 30px 20px;
-        align-items: center; /* Quan trọng để căn giữa badge và title */
+        padding: 35px 25px;
+        align-items: center; 
       }
       
       .pc-badge { align-self: center; }
       
       .pc-features {
-        grid-template-columns: 1fr 1fr; /* Giữ 2 cột trên tablet */
-        text-align: left; /* Icon và text trong feature vẫn canh trái cho dễ đọc */
-        max-width: 450px;
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        max-width: 500px;
         margin: 0 auto;
       }
 
       .pc-actions {
         border-left: none;
         border-top: 1px dashed #e2e8f0;
-        padding: 25px 20px;
+        padding: 30px 20px;
         background: #f8fafc;
+        flex: 1; /* Cho phép giãn hết chiều ngang */
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 550px) {
       .pc-features {
-        grid-template-columns: 1fr; /* Mobile về 1 cột */
+        grid-template-columns: 1fr; /* Mobile hẳn về 1 cột */
       }
+      .pc-title { font-size: 22px; }
     }
   </style>
 </head>
@@ -236,7 +238,8 @@
     <h2 class="pc-title">
       Nâng tầm quản lý<br />
       <span>Trải nghiệm Doctor Workspace </span> 
-      <span class="text-highlight-green"><br />MIỄN PHÍ</span>
+      <br />
+      <span class="text-highlight-green">MIỄN PHÍ</span>
     </h2>
 
     <p class="pc-desc">
@@ -278,7 +281,8 @@
     function sendHeight() {
       const container = document.querySelector('.pc-cta-container');
       if (container) {
-        const height = Math.ceil(container.getBoundingClientRect().height + 40); 
+        // Tăng padding bù cho bóng đổ và margin
+        const height = Math.ceil(container.getBoundingClientRect().height + 50); 
         window.parent.postMessage({ type: "dw-resize", height: height }, "*");
       }
     }
