@@ -196,7 +196,29 @@ font-weight: 800; /* Làm chữ rất đậm */
 }
 
 </style>
+<script>
+(function() {
+  function sendHeight() {
+    // Tính toán chiều cao chính xác nhất của nội dung
+    var height = document.getElementsByTagName('html')[0].scrollHeight;
+    
+    // Gửi tin nhắn đến trang cha
+    window.parent.postMessage({
+      type: "dw-resize",
+      height: height
+    }, "*");
+  }
 
+  // Gửi khi vừa tải xong
+  window.addEventListener('load', sendHeight);
+  
+  // Gửi khi thay đổi kích thước cửa sổ (nếu có)
+  window.addEventListener('resize', sendHeight);
+
+  // Quan trọng: Gửi lại sau 1 giây để đảm bảo hình ảnh/font đã render xong
+  setTimeout(sendHeight, 1000);
+})();
+</script>
 <!-- =========================
    SCHEMA – SAFE FOR BANNER
 ========================= -->
@@ -219,17 +241,6 @@ font-weight: 800; /* Làm chữ rất đậm */
   }
 }
 </script>
-/* Code này phải nằm TRONG file github.io */
-window.onload = function() {
-  var body = document.body,
-      html = document.documentElement;
-  var height = Math.max(body.scrollHeight, body.offsetHeight);
-  
-  window.parent.postMessage({
-    type: "dw-resize",
-    height: height
-  }, "*");
-};
 <!-- =========================
    HTML BANNER
 ========================= -->
