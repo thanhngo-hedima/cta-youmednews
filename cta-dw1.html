@@ -179,8 +179,16 @@
     ✓ Hơn 1.000+ Bác sĩ đang tin dùng mỗi ngày
   </div>
 </div>
-
+<script>
+function resizeParent() {
+  const h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ type: "dw-resize", height: h }, "*");
+}
+window.addEventListener("load", resizeParent);
+window.addEventListener("resize", resizeParent);
+</script>
 </body>
 </html>
+
 
 
