@@ -5,191 +5,180 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #0248c4;
-  --primary-dark: #013593;
-  --text-main: #1e293b;
-  --text-gray: #475569;
-  --font: 'Plus Jakarta Sans', sans-serif;
-}
+  :root {
+    --primary: #0248c4;
+    --primary-dark: #013593;
+    --text-main: #1a202c;
+    --text-gray: #4a5568;
+    --font: 'Plus Jakarta Sans', sans-serif;
+  }
 
-/* ===== CONTAINER TỔNG ===== */
-.dw-hybrid-cta {
-  max-width: 900px;
-  margin: 40px auto;
-  font-family: var(--font);
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  background-color: #ffffff;
-  border: 1px solid rgba(2, 72, 196, 0.12);
-  box-shadow: 0 15px 35px rgba(2, 72, 196, 0.08);
-}
+  /* CONTAINER CHÍNH - GIỚI HẠN MOBILE */
+  .mobile-cta-card {
+    max-width: 450px; /* Độ rộng tối ưu cho các dòng Smartphone */
+    margin: 20px auto;
+    font-family: var(--font);
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid rgba(2, 72, 196, 0.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    position: relative;
+    padding: 30px 20px;
+    text-align: center;
+  }
 
-.dw-bg-image {
-  position: absolute;
-  top: 0; right: 0;
-  width: 55%;
-  height: 100%;
-  background: url("https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/main-bg.webp") no-repeat center right / cover;
-  z-index: 0;
-}
+  /* HIỆU ỨNG NỀN CSS (SIÊU NHẸ) */
+  .mobile-cta-card::before {
+    content: "";
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 120px; height: 120px;
+    background: rgba(2, 72, 196, 0.03);
+    border-radius: 50%;
+  }
 
-.dw-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, #ffffff 0%, #ffffff 40%, rgba(255, 255, 255, 0.8) 70%, rgba(255, 255, 255, 0.3) 100%);
-  z-index: 1;
-}
+  /* BADGE */
+  .m-badge {
+    display: inline-block;
+    background: rgba(2, 72, 196, 0.08);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
 
-.dw-wrapper {
-  position: relative;
-  z-index: 2;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-}
+  /* TIÊU ĐỀ */
+  .m-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.35;
+    margin: 0 0 12px 0;
+  }
+  .m-title span { color: var(--primary); }
 
-.dw-title {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--text-main);
-  margin: 0 0 12px 0;
-  line-height: 1.25;
-}
+  /* MÔ TẢ */
+  .m-desc {
+    font-size: 14.5px;
+    color: var(--text-gray);
+    line-height: 1.55;
+    margin-bottom: 24px;
+    padding: 0 10px;
+  }
 
-.dw-title span { color: var(--primary); }
+  /* GRID TÍNH NĂNG (2 CỘT GỌN GÀNG) */
+  .m-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+    text-align: left;
+  }
 
-.dw-desc {
-  font-size: 15px;
-  color: var(--text-gray);
-  max-width: 520px;
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
+  .m-feat-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+  }
 
-.dw-features {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  justify-content: start;
-  gap: 12px 30px;
-  margin-bottom: 32px;
-}
+  .m-feat-item svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    color: #10b981;
+    flex-shrink: 0;
+  }
 
-.dw-feat-item {
-  display: flex;
-  align-items: center;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: #334155;
-}
+  /* NHÓM NÚT BẤM - CĂN GIỮ, KHÔNG TRÀN VIỀN */
+  .m-btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
 
-.dw-feat-item svg {
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  color: #10b981;
-}
+  .btn-m {
+    width: 85%; /* Thu gọn nút, không sát mép */
+    max-width: 280px;
+    padding: 15px 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    display: block;
+    box-sizing: border-box;
+  }
 
-.dw-btn-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  align-items: center;
-}
+  .btn-m:active { transform: scale(0.97); }
 
-.btn-dw {
-  padding: 12px 28px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-}
+  .btn-m-primary {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(2, 72, 196, 0.25);
+  }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: #fff;
-  box-shadow: 0 8px 15px rgba(2, 72, 196, 0.2);
-}
+  .btn-m-secondary {
+    background: #ffffff;
+    color: var(--text-main);
+    border: 1px solid #e2e8f0;
+  }
 
-.btn-secondary {
-  background: #fff;
-  color: var(--text-main);
-  border: 1.5px solid #e2e8f0;
-}
-
-.dw-trust {
-  margin-top: 18px;
-  font-size: 11.5px;
-  color: #94a3b8;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
+  /* SOCIAL PROOF */
+  .m-proof {
+    margin-top: 18px;
+    font-size: 11px;
+    color: #94a3b8;
+    font-style: italic;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="dw-hybrid-cta">
-  <div class="dw-bg-image"></div>
-  <div class="dw-overlay"></div>
+<div class="mobile-cta-card">
+  <div class="m-badge">Dành riêng cho Bác sĩ</div>
+  
+  <h3 class="m-title">Nâng tầm quản lý<br><span>Dùng thử Doctor Workspace MIỄN PHÍ</span></h3>
+  
+  <p class="m-desc">
+    Doctor Workspace là nền tảng quản lý phòng khám giúp Bác sĩ số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành mỗi ngày.
+  </p>
 
-  <div class="dw-wrapper">
-
-    <h3 class="dw-title">
-      Nền tảng quản lý phòng khám cho Bác sĩ
-      <br><span>Dùng thử miễn phí Doctor Workspace</span>
-    </h3>
-
-    <p class="dw-desc">
-      Doctor Workspace là nền tảng quản lý phòng khám giúp Bác sĩ
-      số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa,
-      giảm đến 50% thời gian vận hành mỗi ngày.
-    </p>
-
-    <div class="dw-features">
-      <div class="dw-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Quản lý phòng khám tập trung
-      </div>
-      <div class="dw-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Tư vấn khám bệnh từ xa
-      </div>
-      <div class="dw-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Đào tạo CME tích hợp sẵn
-      </div>
-      <div class="dw-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Hồ sơ bệnh án điện tử chuẩn hóa
-      </div>
+  <div class="m-features">
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+      Quản lý phòng khám tập trung
     </div>
-
-    <div class="dw-btn-group">
-      <a href="https://app.doctorworkspace.com/sign-up" class="btn-dw btn-primary" target="_blank">
-        DÙNG THỬ MIỄN PHÍ
-      </a>
-      <a href="https://doctorworkspace.com/" class="btn-dw btn-secondary" target="_blank">
-        Xem giải pháp chi tiết
-      </a>
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+      Tư vấn online từ xa
     </div>
-
-    <div class="dw-trust">
-      <span style="color:#10b981;">●</span>
-      Hơn 1.000+ Bác sĩ đang sử dụng Doctor Workspace
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+      Đào tạo  chứng chỉ CME
     </div>
+    <div class="m-feat-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+      Liên thông bệnh án điện tử
+    </div>
+  </div>
 
+  <div class="m-btn-group">
+    <a href="https://app.doctorworkspace.com/sign-up" class="btn-m btn-m-primary">ĐĂNG KÝ DÙNG THỬ</a>
+    <a href="https://doctorworkspace.com/" class="btn-m btn-m-secondary">Tìm hiểu thêm</a>
+  </div>
+
+  <div class="m-proof">
+    ✓ Hơn 1.000+ Bác sĩ đang tin dùng mỗi ngày
   </div>
 </div>
 
 </body>
 </html>
-
-
