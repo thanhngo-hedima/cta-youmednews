@@ -219,7 +219,17 @@ font-weight: 800; /* Làm chữ rất đậm */
   }
 }
 </script>
-
+/* Code này phải nằm TRONG file github.io */
+window.onload = function() {
+  var body = document.body,
+      html = document.documentElement;
+  var height = Math.max(body.scrollHeight, body.offsetHeight);
+  
+  window.parent.postMessage({
+    type: "dw-resize",
+    height: height
+  }, "*");
+};
 <!-- =========================
    HTML BANNER
 ========================= -->
