@@ -293,4 +293,23 @@
   setTimeout(sendHeight, 1000);
 })();
 </script>
+  <script>
+  function sendHeight() {
+    // Đo chiều cao thực tế của toàn bộ container sau khi đã xoay dọc
+    const container = document.querySelector('.pc-cta-container');
+    if (container) {
+      // OffsetHeight tính toán chính xác kích thước hiện tại của khối
+      const height = container.offsetHeight + 40; 
+      window.parent.postMessage({ type: "dw-resize", height: height }, "*");
+    }
+  }
+
+  // Lắng nghe sự kiện load và đặc biệt là sự kiện RESIZE
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight); 
+  
+  // Chạy lại sau vài giây để chắc chắn giao diện đã ổn định
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 2000);
+</script>
 </html>
