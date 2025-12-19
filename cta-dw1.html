@@ -4,19 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPageElement",
+  "name": "Banner giới thiệu Doctor Workspace",
+  "description": "Banner giới thiệu Doctor Workspace – nền tảng số hóa dành cho bác sĩ do YouMed phát triển.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "YouMed Vietnam",
+    "url": "https://youmed.vn"
+  },
+  "mentions": {
+    "@type": "SoftwareApplication",
+    "name": "Doctor Workspace",
+    "url": "https://doctorworkspace.com",
+    "applicationCategory": "HealthApplication"
+  }
+}
+</script>
+
 <style>
   :root {
     --primary: #0248c4;
     --primary-dark: #013593;
+    --success-green: #10b981; /* Màu xanh lá tối ưu cho UI/UX */
     --text-main: #1a202c;
     --text-gray: #4a5568;
     --font: 'Plus Jakarta Sans', sans-serif;
   }
 
-  /* CONTAINER CHÍNH - GIỚI HẠN MOBILE */
+  body { margin: 0; padding: 0; background: transparent; }
+
+  .cta-sidebar-context {
+    display: block;
+    max-width: 450px;
+    margin: 10px auto;
+  }
+
   .mobile-cta-card {
-    max-width: 450px; /* Độ rộng tối ưu cho các dòng Smartphone */
-    margin: 20px auto;
     font-family: var(--font);
     background: #ffffff;
     border-radius: 24px;
@@ -26,19 +53,15 @@
     position: relative;
     padding: 30px 20px;
     text-align: center;
+    box-sizing: border-box;
   }
 
-  /* HIỆU ỨNG NỀN CSS (SIÊU NHẸ) */
-  .mobile-cta-card::before {
-    content: "";
-    position: absolute;
-    top: -50px; right: -50px;
-    width: 120px; height: 120px;
-    background: rgba(2, 72, 196, 0.03);
-    border-radius: 50%;
+  /* CLASS MỚI CHO CHỮ MIỄN PHÍ */
+  .text-highlight-green {
+    color: var(--success-green) !important;
+    font-weight: 800;
   }
 
-  /* BADGE */
   .m-badge {
     display: inline-block;
     background: rgba(2, 72, 196, 0.08);
@@ -52,7 +75,6 @@
     margin-bottom: 16px;
   }
 
-  /* TIÊU ĐỀ */
   .m-title {
     font-size: 22px;
     font-weight: 800;
@@ -60,9 +82,8 @@
     line-height: 1.35;
     margin: 0 0 12px 0;
   }
-  .m-title span { color: var(--primary); }
+  .m-title span.brand-blue { color: var(--primary); }
 
-  /* MÔ TẢ */
   .m-desc {
     font-size: 14.5px;
     color: var(--text-gray);
@@ -71,7 +92,6 @@
     padding: 0 10px;
   }
 
-  /* GRID TÍNH NĂNG (2 CỘT GỌN GÀNG) */
   .m-features {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -92,11 +112,10 @@
     width: 16px;
     height: 16px;
     margin-right: 6px;
-    color: #10b981;
+    color: var(--success-green);
     flex-shrink: 0;
   }
 
-  /* NHÓM NÚT BẤM - CĂN GIỮ, KHÔNG TRÀN VIỀN */
   .m-btn-group {
     display: flex;
     flex-direction: column;
@@ -105,7 +124,7 @@
   }
 
   .btn-m {
-    width: 85%; /* Thu gọn nút, không sát mép */
+    width: 85%;
     max-width: 280px;
     padding: 15px 20px;
     border-radius: 14px;
@@ -117,103 +136,63 @@
     box-sizing: border-box;
   }
 
-  .btn-m:active { transform: scale(0.97); }
-
-  .btn-m-primary {
-    background: var(--primary);
-    color: #ffffff;
-    box-shadow: 0 6px 15px rgba(2, 72, 196, 0.25);
-  }
-
-  .btn-m-secondary {
-    background: #ffffff;
-    color: var(--text-main);
-    border: 1px solid #e2e8f0;
-  }
-
-  /* SOCIAL PROOF */
-  .m-proof {
-    margin-top: 18px;
-    font-size: 11px;
-    color: #94a3b8;
-    font-style: italic;
-  }
+  .btn-m-primary { background: var(--primary); color: #ffffff; box-shadow: 0 6px 15px rgba(2, 72, 196, 0.25); }
+  .btn-m-secondary { background: #ffffff; color: var(--text-main); border: 1px solid #e2e8f0; }
 </style>
 </head>
 <body>
 
-<div class="mobile-cta-card">
-  <div class="m-badge">Dành riêng cho Bác sĩ</div>
-  
-  <h3 class="m-title">Nâng tầm quản lý<br><span>Dùng thử Doctor Workspace MIỄN PHÍ</span></h3>
-  
-  <p class="m-desc">
-    Doctor Workspace là bộ công cụ giúp Bác sĩ quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành mỗi ngày.
-  </p>
+<aside class="cta-sidebar-context" aria-labelledby="cta-title">
+  <div class="mobile-cta-card">
+    <div class="m-badge">Dành riêng cho Bác sĩ</div>
+    
+    <h3 class="m-title" id="cta-title">
+        Nâng tầm quản lý<br>
+        <span class="brand-blue">Dùng thử Doctor Workspace </span>
+        <span class="text-highlight-green">MIỄN PHÍ</span>
+    </h3>
+    
+    <p class="m-desc">
+      Doctor Workspace là bộ công cụ giúp Bác sĩ quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành.
+    </p>
 
-  <div class="m-features">
-    <div class="m-feat-item">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-      Quản lý phòng khám tập trung
+    <div class="m-features">
+      <div class="m-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Quản lý phòng khám
+      </div>
+      <div class="m-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Tư vấn online
+      </div>
+      <div class="m-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Đào tạo chứng chỉ CME
+      </div>
+      <div class="m-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Liên thông bệnh án điện tử
+      </div>
     </div>
-    <div class="m-feat-item">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-      Tư vấn online từ xa
-    </div>
-    <div class="m-feat-item">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-      Đào tạo  chứng chỉ CME
-    </div>
-    <div class="m-feat-item">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-      Liên thông bệnh án điện tử
+
+    <div class="m-btn-group">
+      <a href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-primary">ĐĂNG KÝ DÙNG THỬ</a>
+      <a href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-secondary" target="_blank">Tìm hiểu thêm</a>
     </div>
   </div>
+</aside>
 
-  <div class="m-btn-group">
-    <a href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-primary">ĐĂNG KÝ DÙNG THỬ</a>
-    <a href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-secondary" target="_blank">Tìm hiểu thêm</a>
-  </div>
 <script>
 (function () {
-  function getH() {
-    return Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight
-    );
-  }
-
   function send() {
-    window.parent.postMessage({ type: "dw-resize", height: getH() }, "*");
+    const h = document.body.getBoundingClientRect().height;
+    window.parent.postMessage({ type: "dw-resize", height: h }, "*");
   }
-
-  window.addEventListener("load", () => {
-    send();
-    setTimeout(send, 200);
-    setTimeout(send, 800);
-    setTimeout(send, 1500);
-  });
-
-  window.addEventListener("resize", () => {
-    send();
-    setTimeout(send, 200);
-  });
-
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => {
-      send();
-      setTimeout(send, 200);
-    });
-  }
+  window.addEventListener("load", send);
+  window.addEventListener("resize", send);
+  if (document.fonts) { document.fonts.ready.then(send); }
+  setTimeout(send, 1000);
 })();
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
