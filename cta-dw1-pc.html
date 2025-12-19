@@ -1,334 +1,258 @@
-<!-- =========================
-  YOUmed – Doctor Workspace
-  Global PC-only Banner
-  ========================= -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* =========================
+       VARIABLES & RESET
+    ========================= */
+    :root {
+      --primary: #0248c4;
+      --primary-dark: #013593;
+      --success-green: #28a745;
+      --text-main: #1a202c;
+      --text-gray: #4a5568;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-<style>
-/* =========================
-   PC ONLY – HIDE MOBILE
-========================= */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Quan trọng cho iframe */
+      background: transparent;
+    }
 
-/* =========================
-   VARIABLES
-========================= */
-:root {
-  --primary: #0248c4;
-  --primary-dark: #013593;
-  --text-main: #1a202c;
-  --text-gray: #4a5568;
-  --font: 'Inter', system-ui, -apple-system, sans-serif;
-}
+    /* =========================
+       CONTAINER
+    ========================= */
+    .pc-cta-container {
+      max-width: 900px;
+      margin: 10px auto; /* Chừa khoảng trống nhỏ cho đổ bóng */
+      font-family: var(--font);
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(2, 72, 196, 0.12);
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(2, 72, 196, 0.08);
+    }
 
-/* =========================
-   CONTAINER
-========================= */
-.pc-cta-container {
-  max-width: 900px;
-  margin: 48px auto;
-  font-family: var(--font);
-  background: #ffffff;
-  border-radius: 20px;
-  border: 1px solid rgba(2, 72, 196, 0.12);
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(2, 72, 196, 0.06);
-}
+    .pc-bg-visual-img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
 
-/* =========================
-   BACKGROUND IMAGE
-========================= */
-.pc-bg-visual-img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
+    .pc-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #ffffff 45%,
+        rgba(255, 255, 255, 0.8) 75%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      z-index: 1;
+    }
 
-/* =========================
-   OVERLAY
-========================= */
-.pc-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #ffffff 45%,
-    rgba(255, 255, 255, 0.8) 75%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
-  z-index: 1;
-}
+    /* =========================
+       CONTENT
+    ========================= */
+    .pc-content {
+      flex: 0.8;
+      padding: 30px 40px;
+      position: relative;
+      z-index: 2;
+    }
 
-/* =========================
-   CONTENT LEFT
-========================= */
-.pc-content {
-  flex: 0.8;
-  padding: 36px 46px;
-  position: relative;
-  z-index: 2;
-}
+    .pc-badge {
+      display: inline-block;
+      background: rgba(2, 72, 196, 0.07);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 15px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
 
-.pc-badge {
-  display: inline-block;
-  background: rgba(2, 72, 196, 0.07);
-  color: var(--primary);
-  font-size: 11px;
-  font-weight: 800;
-  padding: 5px 15px;
-  border-radius: 50px;
-  margin-bottom: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
+    .pc-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
 
-.pc-title {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--text-main);
-  line-height: 1.25;
-  margin-bottom: 10px;
-}
-
-.pc-title span {
-  color: var(--primary);
-}
-
-.pc-desc {
-  font-size: 15px;
-  color: var(--text-gray);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  max-width: 480px;
-}
-.text-highlight-green {
-color: #28a745 !important;
-font-weight: 800; /* Làm chữ rất đậm */
-}
-/* =========================
-   FEATURES
-========================= */
-.pc-features {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px 26px;
-}
-
-.pc-feat-item {
-  display: flex;
-  align-items: center;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: #334155;
-}
-
-.pc-feat-item svg {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  color: #10b981;
-  flex-shrink: 0;
-}
-
-/* =========================
-   ACTIONS RIGHT
-========================= */
-.pc-actions {
-  flex: 0.5;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  z-index: 2;
-  position: relative;
-  border-left: 1px dashed #e2e8f0;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(5px);
-}
-
-.btn-pc {
-  width: 200px;
-  padding: 13px 20px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.25s ease;
-  margin-bottom: 12px;
-}
-
-.btn-pc-primary {
-  background: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(2, 72, 196, 0.2);
-}
-
-.btn-pc-primary:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
-.btn-pc-secondary {
-  background: #f8fafc;
-  color: #475569;
-  border: 1.5px solid #e2e8f0;
-}
-
-.btn-pc-secondary:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.pc-proof {
-  margin-top: 10px;
-  font-size: 11.5px;
-  color: #16a34a;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-</style>
-<script>
-(function() {
-  function sendHeight() {
-    // Tính toán chiều cao chính xác nhất của nội dung
-    var height = document.getElementsByTagName('html')[0].scrollHeight;
+    .pc-title span { color: var(--primary); }
     
-    // Gửi tin nhắn đến trang cha
-    window.parent.postMessage({
-      type: "dw-resize",
-      height: height
-    }, "*");
-  }
+    /* Sửa lỗi màu xanh lá cây */
+    .pc-title .text-highlight-green {
+      color: var(--success-green) !important;
+      font-weight: 800;
+    }
 
-  // Gửi khi vừa tải xong
-  window.addEventListener('load', sendHeight);
-  
-  // Gửi khi thay đổi kích thước cửa sổ (nếu có)
-  window.addEventListener('resize', sendHeight);
+    .pc-desc {
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
 
-  // Quan trọng: Gửi lại sau 1 giây để đảm bảo hình ảnh/font đã render xong
-  setTimeout(sendHeight, 1000);
-})();
-</script>
-<!-- =========================
-   SCHEMA – SAFE FOR BANNER
-========================= -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPageElement",
-  "name": "Banner giới thiệu Doctor Workspace",
-  "description": "Banner giới thiệu Doctor Workspace – nền tảng số hóa dành cho bác sĩ do YouMed phát triển.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "YouMed Vietnam",
-    "url": "https://youmed.vn"
-  },
-  "mentions": {
-    "@type": "SoftwareApplication",
-    "name": "Doctor Workspace",
-    "url": "https://doctorworkspace.com",
-    "applicationCategory": "HealthApplication"
-  }
-}
-</script>
-<!-- =========================
-   HTML BANNER
-========================= -->
-<aside
-  class="pc-cta-container"
-  role="complementary"
-  aria-label="Giải pháp số hóa dành cho bác sĩ do YouMed phát triển"
-  data-component="global-pc-banner"
-  data-owner="youmed"
->
-  <img
-    src="https://youmed.vn/tin-tuc/wp-content/uploads/2025/10/bannerR4_adapt970x90@4x-1.png"
-    alt=""
-    class="pc-bg-visual-img"
-    loading="lazy"
-  />
+    /* Sửa lỗi không in đậm */
+    .pc-desc strong {
+      font-weight: 800 !important;
+      color: var(--text-main);
+    }
 
+    /* =========================
+       FEATURES
+    ========================= */
+    .pc-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 20px;
+    }
+
+    .pc-feat-item {
+      display: flex;
+      align-items: center;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .pc-feat-item svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      color: #10b981;
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       ACTIONS
+    ========================= */
+    .pc-actions {
+      flex: 0.4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 2;
+      position: relative;
+      border-left: 1px dashed #e2e8f0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-pc {
+      width: 180px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.25s ease;
+      margin-bottom: 10px;
+    }
+
+    .btn-pc-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(2, 72, 196, 0.2);
+    }
+
+    .btn-pc-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-pc-secondary {
+      background: #f8fafc;
+      color: #475569;
+      border: 1.5px solid #e2e8f0;
+    }
+
+    .pc-proof {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #16a34a;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<aside class="pc-cta-container">
+  <img src="https://youmed.vn/tin-tuc/wp-content/uploads/2025/10/bannerR4_adapt970x90@4x-1.png" alt="" class="pc-bg-visual-img" />
   <div class="pc-overlay"></div>
 
-  <div class="pc-content" data-nosnippet>
+  <div class="pc-content">
     <div class="pc-badge">Dành riêng cho Bác sĩ</div>
-
-    <div class="pc-title" role="heading" roboto-level="3">
+    <div class="pc-title">
       Nâng tầm quản lý<br />
-      <span>Trải nghiệm Doctor Workspace </span>
-<span class="text-highlight-green">MIỄN PHÍ</span>
-
+      <span>Trải nghiệm Doctor Workspace </span><span class="text-highlight-green">MIỄN PHÍ</span>
     </div>
 
     <p class="pc-desc">
-<strong> Doctor Workspace</strong> là bộ công cụ giúp các <strong> Y bác sĩ </strong> quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành..
+      <strong>Doctor Workspace</strong> là bộ công cụ giúp các <strong>Y bác sĩ</strong> quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành.
     </p>
 
     <div class="pc-features">
       <div class="pc-feat-item">
-        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-        </svg>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         Quản lý phòng khám 4.0
       </div>
-
       <div class="pc-feat-item">
-        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-        </svg>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         Đặt khám thông minh
       </div>
-
       <div class="pc-feat-item">
-        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-        </svg>
-        Liên thông bệnh án điện tử EMR
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Bệnh án điện tử EMR
       </div>
-
       <div class="pc-feat-item">
-        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-        </svg>
-        Đào tạo và cấp chứng chỉ CME
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Đào tạo CME
       </div>
     </div>
   </div>
- 
+
   <div class="pc-actions">
-    <a
-      href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
-      class="btn-pc btn-pc-primary "target="_blank"
-      data-cta="signup"
-      data-product="doctor-workspace"
-    >
-      Dùng thử miễn phí
-    </a>
-
-    <a
-      href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW"
-      class="btn-pc btn-pc-secondary "target="_blank"
-      data-cta="detail"
-      data-product="doctor-workspace"
-    >
-      Xem giải pháp
-    </a>
-
+    <a href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW" class="btn-pc btn-pc-primary" target="_parent">Dùng thử miễn phí</a>
+    <a href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW" class="btn-pc btn-pc-secondary" target="_parent">Xem giải pháp</a>
     <div class="pc-proof">
-      <svg aria-hidden="true" width="14" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
-      </svg>
-       Hơn 1.000+ Bác sĩ tin dùng
+      <svg width="14" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg>
+      1.000+ Bác sĩ tin dùng
     </div>
   </div>
 </aside>
+
+<script>
+  function sendHeight() {
+    const height = document.body.offsetHeight + 40; // Cộng thêm đệm cho bóng đổ
+    window.parent.postMessage({ type: "dw-resize", height: height }, "*");
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  setTimeout(sendHeight, 500);
+  setTimeout(sendHeight, 2000); // Gửi lại lần nữa khi ảnh đã load xong hoàn toàn
+</script>
+
+</body>
+</html>
