@@ -21,7 +21,6 @@
       padding: 0;
       font-family: var(--font);
       background: transparent;
-      /* Không dùng overflow: hidden ở body nếu muốn đo height chính xác */
     }
 
     /* =========================
@@ -30,7 +29,7 @@
     .pc-cta-container {
       max-width: 900px;
       margin: 20px auto;
-      display: flex; /* Quan trọng: Kích hoạt flexbox */
+      display: flex;
       flex-direction: row;
       background: #ffffff;
       border-radius: 16px;
@@ -71,10 +70,14 @@
       padding: 30px 40px;
       position: relative;
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .pc-badge {
       display: inline-block;
+      align-self: flex-start;
       background: rgba(2, 72, 196, 0.07);
       color: var(--primary);
       font-size: 11px;
@@ -90,7 +93,7 @@
       font-weight: 800;
       color: var(--text-main);
       line-height: 1.3;
-      margin-bottom: 12px;
+      margin: 0 0 12px 0;
     }
 
     .pc-title span { color: var(--primary); }
@@ -100,7 +103,7 @@
       font-size: 14px;
       color: var(--text-gray);
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin: 0 0 20px 0;
     }
 
     .pc-desc strong {
@@ -149,7 +152,7 @@
 
     .btn-pc {
       width: 100%;
-      max-width: 200px;
+      max-width: 220px;
       padding: 12px;
       border-radius: 10px;
       font-size: 14px;
@@ -167,7 +170,7 @@
     }
 
     .btn-pc-secondary {
-      background: #f8fafc;
+      background: #ffffff;
       color: #475569;
       border: 1px solid #e2e8f0;
     }
@@ -182,24 +185,43 @@
     }
 
     /* =========================
-       RESPONSIVE (Mobile)
+       RESPONSIVE (Tablet & Mobile)
     ========================= */
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
       .pc-cta-container {
         flex-direction: column;
         margin: 10px;
+        text-align: center;
       }
       .pc-bg-visual-img { display: none; }
       .pc-overlay { background: #fff; }
-      .pc-content { padding: 20px; }
-      .pc-title { font-size: 20px; }
+      
+      .pc-content { 
+        padding: 30px 20px;
+        align-items: center; /* Quan trọng để căn giữa badge và title */
+      }
+      
+      .pc-badge { align-self: center; }
+      
+      .pc-features {
+        grid-template-columns: 1fr 1fr; /* Giữ 2 cột trên tablet */
+        text-align: left; /* Icon và text trong feature vẫn canh trái cho dễ đọc */
+        max-width: 450px;
+        margin: 0 auto;
+      }
+
       .pc-actions {
         border-left: none;
         border-top: 1px dashed #e2e8f0;
-        padding: 20px;
+        padding: 25px 20px;
         background: #f8fafc;
       }
-      .pc-features { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .pc-features {
+        grid-template-columns: 1fr; /* Mobile về 1 cột */
+      }
     }
   </style>
 </head>
@@ -211,13 +233,14 @@
 
   <div class="pc-content">
     <div class="pc-badge">Dành riêng cho Bác sĩ</div>
-    <div class="pc-title">
+    <h2 class="pc-title">
       Nâng tầm quản lý<br />
-      <span>Trải nghiệm Doctor Workspace </span><span class="text-highlight-green">MIỄN PHÍ</span>
-    </div>
+      <span>Trải nghiệm Doctor Workspace </span> 
+      <span class="text-highlight-green"><br />MIỄN PHÍ</span>
+    </h2>
 
     <p class="pc-desc">
-      <strong>Doctor Workspace</strong> là bộ công cụ giúp các <strong>Y bác sĩ</strong> quản lý phòng khám, số hóa bệnh án và tư vấn từ xa.
+      <strong>Doctor Workspace</strong> là bộ công cụ giúp các <strong>Y bác sĩ</strong> quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành.
     </p>
 
     <div class="pc-features">
@@ -227,7 +250,15 @@
       </div>
       <div class="pc-feat-item">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Đặt khám thông minh
+      </div>
+      <div class="pc-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         Bệnh án điện tử EMR
+      </div>
+      <div class="pc-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Đào tạo CME
       </div>
     </div>
   </div>
@@ -247,15 +278,12 @@
     function sendHeight() {
       const container = document.querySelector('.pc-cta-container');
       if (container) {
-        // Sử dụng getBoundingClientRect để lấy thông số chính xác bao gồm cả scale/margin
         const height = Math.ceil(container.getBoundingClientRect().height + 40); 
         window.parent.postMessage({ type: "dw-resize", height: height }, "*");
       }
     }
-
     window.addEventListener('load', sendHeight);
     window.addEventListener('resize', sendHeight);
-    // Gửi lại chiều cao sau khi fonts và ảnh đã render xong hoàn toàn
     setTimeout(sendHeight, 600);
     setTimeout(sendHeight, 2000);
   })();
