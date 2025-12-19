@@ -25,18 +25,44 @@
     /* =========================
        CONTAINER
     ========================= */
-    .pc-cta-container {
-      max-width: 900px;
-      margin: 10px auto; /* Chừa khoảng trống nhỏ cho đổ bóng */
-      font-family: var(--font);
-      background: #ffffff;
-      border-radius: 20px;
-      border: 1px solid rgba(2, 72, 196, 0.12);
-      display: flex;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(2, 72, 196, 0.08);
-    }
+/* Container mặc định cho PC lớn */
+.pc-cta-container {
+  max-width: 900px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row; /* Nằm ngang */
+  /* ... các thuộc tính khác giữ nguyên ... */
+}
+
+/* Khi màn hình nhỏ hơn 1000px */
+@media (max-width: 1000px) {
+  .pc-cta-container {
+    flex-direction: column; /* Chuyển thành hàng dọc */
+    max-width: 600px; /* Thu hẹp lại để cân đối khi nằm dọc */
+  }
+
+  .pc-actions {
+    flex: 1;
+    width: 100%;
+    border-left: none; /* Bỏ gạch dọc bên trái */
+    border-top: 1px dashed #e2e8f0; /* Thêm gạch ngang phía trên */
+    padding: 24px;
+    background: #f8fafc; /* Đổi màu nền nhẹ để tách biệt phần nút */
+  }
+
+  .pc-content {
+    flex: 1;
+    padding: 24px;
+  }
+
+  .pc-bg-visual-img {
+    display: none; /* Ẩn ảnh nền để tránh rối mắt khi chuyển dọc */
+  }
+  
+  .pc-overlay {
+    background: #ffffff; /* Bỏ gradient, dùng nền trắng thuần */
+  }
+}
 
     .pc-bg-visual-img {
       position: absolute;
