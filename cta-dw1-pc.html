@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<style>
+:root {
+  --primary: #0248c4;
+  --primary-dark: #013593;
+  --text-main: #1a202c;
+  --text-gray: #4a5568;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== PC CTA CONTAINER ===== */
+.pc-cta-container {
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: var(--font);
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(2, 72, 196, 0.12);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(2, 72, 196, 0.06);
+}
+
+/* ẢNH NỀN CHÌM PHÍA PHẢI */
+.pc-bg-visual {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: url("https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/right-image.jpg") no-repeat center right / cover;
+  z-index: 0;
+}
+
+/* LỚP PHỦ CHE CHỮ */
+.pc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 45%, rgba(255, 255, 255, 0.8) 75%, rgba(255, 255, 255, 0.1) 100%);
+  z-index: 1;
+}
+
+/* NỘI DUNG BÊN TRÁI */
+.pc-content {
+  flex: 1.6;
+  padding: 35px 45px;
+  position: relative;
+  z-index: 2;
+}
+
+.pc-badge {
+  display: inline-block;
+  background: rgba(2, 72, 196, 0.07);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 15px;
+  border-radius: 50px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.pc-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.pc-title span { color: var(--primary); }
+
+.pc-desc {
+  font-size: 15px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 480px;
+}
+
+/* GRID TÍNH NĂNG */
+.pc-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 25px;
+}
+
+.pc-feat-item {
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.pc-feat-item svg {
+  width: 18px; height: 18px;
+  margin-right: 10px;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* CỘT HÀNH ĐỘNG BÊN PHẢI */
+.pc-actions {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  z-index: 2;
+  position: relative;
+  border-left: 1px dashed #e2e8f0;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+.btn-pc {
+  width: 200px; /* Cố định chiều rộng, không tràn viền */
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+}
+
+.btn-pc-primary {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(2, 72, 196, 0.2);
+}
+
+.btn-pc-secondary {
+  background: #ffffff;
+  color: var(--text-main);
+  border: 1.5px solid #e2e8f0;
+}
+
+.btn-pc-primary:hover { transform: translateY(-2px); background: var(--primary-dark); }
+.btn-pc-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+.pc-proof {
+  margin-top: 10px;
+  font-size: 11.5px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Doctor Workspace",
+  "alternateName": "Hệ sinh thái Quản lý Y khoa Doctor Workspace",
+  "description": "Nền tảng chuyển đổi số toàn diện cho Bác sĩ, tích hợp quản lý phòng khám 4.0, tư vấn từ xa, AI chẩn đoán và đào tạo CME.",
+  "applicationCategory": "HealthApplication, BusinessApplication",
+  "operatingSystem": "Web, Android, iOS",
+  "url": "https://doctorworkspace.com/",
+  "logo": "https://youmed.vn/tin-tuc/wp-content/uploads/2025/12/logo-dw.png",
+  "brand": {
+    "@type": "Brand",
+    "name": "Doctor Workspace",
+    "slogan": "Nâng tầm quản lý y khoa"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "VND",
+    "name": "Dùng thử miễn phí",
+    "description": "Chương trình dùng thử miễn phí toàn bộ tính năng cho Bác sĩ mới đăng ký.",
+    "url": "https://app.doctorworkspace.com/sign-up",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "1250",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "featureList": [
+    "Quản lý phòng khám tập trung",
+    "Hỗ trợ tư vấn khám bệnh từ xa",
+    "Hồ sơ bệnh án điện tử chuẩn hóa",
+    "Tích hợp khóa học CME và AI y tế"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "YouMed Vietnam"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://doctorworkspace.com/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="pc-cta-container">
+  <div class="pc-bg-visual"></div>
+  <div class="pc-overlay"></div>
+  
+  <div class="pc-content">
+    <div class="pc-badge">Ưu đãi dùng thử 0đ</div>
+    <h3 class="pc-title">Doctor Workspace:<br><span>Hệ sinh thái Quản lý Y khoa</span></h3>
+    <p class="pc-desc">Số hóa phòng khám toàn diện giúp Bác sĩ tối ưu vận hành và kết nối bệnh nhân hiệu quả hơn mỗi ngày.</p>
+    
+    <div class="pc-features">
+      <div class="pc-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Quản lý phòng khám 4.0
+      </div>
+      <div class="pc-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Tư vấn Online & AI hỗ trợ
+      </div>
+      <div class="pc-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Đặt khám thông minh
+      </div>
+      <div class="pc-feat-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        Đào tạo khóa học CME
+      </div>
+    </div>
+  </div>
+
+  <div class="pc-actions">
+    <a href="https://app.doctorworkspace.com/sign-up" class="btn-pc btn-pc-primary">ĐĂNG KÝ NGAY</a>
+    <a href="https://doctorworkspace.com/" class="btn-pc btn-pc-secondary">Xem giải pháp chi tiết</a>
+    
+    <div class="pc-proof">
+      <svg style="width:14px; color:#10b981" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg>
+      5.000+ Bác sĩ tin dùng
+    </div>
+  </div>
+  
+</div>
+
+</body>
+</html>
