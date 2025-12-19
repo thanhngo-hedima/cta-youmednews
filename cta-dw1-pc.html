@@ -244,15 +244,27 @@
 </aside>
 
 <script>
+(function() {
   function sendHeight() {
-    const height = document.body.offsetHeight + 40; // Cộng thêm đệm cho bóng đổ
-    window.parent.postMessage({ type: "dw-resize", height: height }, "*");
+    // Đo chiều cao thực tế của thẻ aside chứa banner
+    var banner = document.querySelector('.pc-cta-container');
+    if (banner) {
+      // Cộng thêm khoảng 20-30px cho bóng đổ (box-shadow) để không bị mất mép dưới
+      var height = banner.offsetHeight + 30; 
+      
+      window.parent.postMessage({
+        type: "dw-resize",
+        height: height
+      }, "*");
+    }
   }
-  window.addEventListener('load', sendHeight);
-  window.addEventListener('resize', sendHeight);
-  setTimeout(sendHeight, 500);
-  setTimeout(sendHeight, 2000); // Gửi lại lần nữa khi ảnh đã load xong hoàn toàn
-</script>
 
-</body>
+  // Gửi tin nhắn ở nhiều thời điểm để tránh sai sót
+  window.addEventListener('load', sendHeight); // Khi web tải xong
+  window.addEventListener('resize', sendHeight); // Khi người dùng thu phóng trình duyệt
+  
+  // Gửi thêm một lần sau 1 giây (đề phòng ảnh banner nặng tải chậm)
+  setTimeout(sendHeight, 1000);
+})();
+</script>
 </html>
