@@ -174,8 +174,40 @@
     <a href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-primary">ĐĂNG KÝ DÙNG THỬ</a>
     <a href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-secondary">Tìm hiểu thêm</a>
   </div>
+<script>
+  function sendHeight() {
+    const h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    );
+    window.parent.postMessage({ type: "dw-resize", height: h }, "*");
+  }
+
+  // 1) Sau khi DOM render
+  window.addEventListener("load", () => {
+    sendHeight();
+    // 2) Gửi lại sau khi font/layout ổn định
+    setTimeout(sendHeight, 300);
+    setTimeout(sendHeight, 1000);
+  });
+
+  // 3) Khi đổi viewport
+  window.addEventListener("resize", () => {
+    sendHeight();
+    setTimeout(sendHeight, 200);
+  });
+
+  // 4) Nếu browser hỗ trợ fonts API, chờ font load xong
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      sendHeight();
+      setTimeout(sendHeight, 200);
+    });
+  }
+</script>
 </body>
 </html>
+
 
 
 
