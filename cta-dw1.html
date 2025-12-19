@@ -3,181 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPageElement",
-  "name": "Banner giới thiệu Doctor Workspace",
-  "description": "Banner giới thiệu Doctor Workspace – nền tảng số hóa dành cho bác sĩ do YouMed phát triển.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "YouMed Vietnam",
-    "url": "https://youmed.vn"
-  },
-  "mentions": {
-    "@type": "SoftwareApplication",
-    "name": "Doctor Workspace",
-    "url": "https://doctorworkspace.com",
-    "applicationCategory": "HealthApplication"
-  }
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
     --primary: #0248c4;
     --primary-dark: #013593;
-    --success-green: #10b981; /* Màu xanh lá tối ưu cho UI/UX */
-    --text-main: #1a202c;
-    --text-gray: #4a5568;
-    --font: 'Plus Jakarta Sans', sans-serif;
+    --success-green: #10b981;
+    --text-main: #000000;
+    --text-gray: #334155;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
   }
 
-  body { margin: 0; padding: 0; background: transparent; }
+  body { margin: 0; padding: 0; background: transparent; -webkit-font-smoothing: antialiased; }
 
   .cta-sidebar-context {
     display: block;
     max-width: 450px;
     margin: 10px auto;
-  }
-
-  .mobile-cta-card {
-    font-family: var(--font);
-    background: #ffffff;
-    border-radius: 24px;
-    border: 1px solid rgba(2, 72, 196, 0.1);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    position: relative;
-    padding: 30px 20px;
-    text-align: center;
+    padding: 0 12px;
     box-sizing: border-box;
   }
 
-  /* CLASS MỚI CHO CHỮ MIỄN PHÍ */
-  .text-highlight-green {
-    color: var(--success-green) !important;
-    font-weight: 800;
+  .mobile-cta-card {
+    font-family: var(--font-body);
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1.5px solid rgba(2, 72, 196, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    padding: 35px 20px;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .m-badge {
     display: inline-block;
     background: rgba(2, 72, 196, 0.08);
     color: var(--primary);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
-    padding: 5px 14px;
+    padding: 6px 16px;
     border-radius: 50px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
   }
 
   .m-title {
-    font-size: 22px;
+    font-family: var(--font-heading);
+    font-size: 25px;
     font-weight: 800;
     color: var(--text-main);
-    line-height: 1.35;
-    margin: 0 0 12px 0;
+    line-height: 1.4;
+    margin: 0 0 14px 0;
+    letter-spacing: 0.1px;
   }
-  .m-title span.brand-blue { color: var(--primary); }
+
+  .brand-blue { color: var(--primary); }
+  .text-highlight-green { color: var(--success-green) !important; font-weight: 800; }
 
   .m-desc {
-    font-size: 14.5px;
+    font-size: 16px;
     color: var(--text-gray);
-    line-height: 1.55;
-    margin-bottom: 24px;
-    padding: 0 10px;
+    line-height: 1.7;
+    margin-bottom: 28px;
   }
 
+  /* --- FIX FEATURES: KHÔNG NGẮT CHỮ, KHÔNG DÍNH VIỀN --- */
   .m-features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px 4px;
+    margin-bottom: 32px;
     text-align: left;
   }
 
   .m-feat-item {
     display: flex;
-    align-items: center;
-    font-size: 12px;
+    align-items: flex-start;
+    flex: 1 1 48%; /* Chia 2 cột linh hoạt */
+    min-width: 155px; /* Đảm bảo đủ rộng cho text dài */
+    font-size: 13.5px;
     font-weight: 700;
-    color: #334155;
+    color: #1e293b;
+    line-height: 1.4;
   }
 
+  .no-wrap { white-space: nowrap; }
+
   .m-feat-item svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     margin-right: 6px;
+    margin-top: 2px;
     color: var(--success-green);
     flex-shrink: 0;
   }
 
+  /* --- FIX BUTTON: THOÁNG VÀ SANG TRỌNG --- */
   .m-btn-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    padding: 0 10px; 
   }
 
   .btn-m {
-    width: 85%;
-    max-width: 280px;
-    padding: 15px 20px;
-    border-radius: 14px;
-    font-size: 14px;
+    width: 100%;
+    max-width: 280px; /* Thu nhỏ để tạo khoảng trống với viền card */
+    padding: 16px 20px;
+    border-radius: 16px;
+    font-family: var(--font-heading);
+    font-size: 16px;
     font-weight: 800;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
     display: block;
     box-sizing: border-box;
+    letter-spacing: 0.5px;
   }
 
-  .btn-m-primary { background: var(--primary); color: #ffffff; box-shadow: 0 6px 15px rgba(2, 72, 196, 0.25); }
-  .btn-m-secondary { background: #ffffff; color: var(--text-main); border: 1px solid #e2e8f0; }
+  .btn-m-primary { 
+    background: var(--primary); 
+    color: #ffffff; 
+    box-shadow: 0 8px 20px rgba(2, 72, 196, 0.3); 
+    border: none;
+  }
+
+  .btn-m-secondary { 
+    background: #ffffff; 
+    color: var(--text-main); 
+    border: 1.5px solid #e2e8f0; 
+  }
+
+  @media (max-width: 380px) {
+    .m-feat-item { flex: 1 1 100%; }
+  }
 </style>
 </head>
 <body>
 
-<aside class="cta-sidebar-context" aria-labelledby="cta-title">
+<aside class="cta-sidebar-context">
   <div class="mobile-cta-card">
     <div class="m-badge">Dành riêng cho Bác sĩ</div>
     
-    <h3 class="m-title" id="cta-title">
+    <h3 class="m-title">
         Nâng tầm quản lý<br>
         <span class="brand-blue">Dùng thử Doctor Workspace </span>
-        <span class="text-highlight-green">MIỄN PHÍ</span>
+        <span class="text-highlight-green"><br>MIỄN PHÍ</span>
     </h3>
     
     <p class="m-desc">
-      Doctor Workspace là bộ công cụ giúp Bác sĩ quản lý phòng khám, số hóa đặt lịch khám, hồ sơ bệnh án điện tử và tư vấn từ xa, giảm đến 50% thời gian vận hành.
+      Hệ sinh thái số hóa toàn diện giúp Bác sĩ tối ưu vận hành phòng khám và nâng cao trải nghiệm chăm sóc bệnh nhân.
     </p>
 
     <div class="m-features">
       <div class="m-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Quản lý phòng khám
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+        <span class="no-wrap">Quản lý Phòng khám 4.0</span>
       </div>
       <div class="m-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Tư vấn online
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+        <span>Tư vấn online <span class="no-wrap">bệnh nhân</span></span>
       </div>
       <div class="m-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Đào tạo chứng chỉ CME
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+        <span class="no-wrap">Đào tạo chứng chỉ CME</span>
       </div>
       <div class="m-feat-item">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-        Liên thông bệnh án điện tử
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+        <span class="no-wrap">Liên thông bệnh án điện tử</span>
       </div>
     </div>
 
     <div class="m-btn-group">
-      <a href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-primary" target="_blank">ĐĂNG KÝ DÙNG THỬ</a>
-      <a href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-secondary" target="_blank">Tìm hiểu thêm</a>
+      <a href="https://app.doctorworkspace.com/sign-up?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-primary" target="_blank">TRẢI NGHIỆM NGAY</a>
+      <a href="https://doctorworkspace.com/?utm_source=YMN&utm_medium=articles-cta&utm_campaign=DW/" class="btn-m btn-m-secondary" target="_blank">TÌM HIỂU THÊM</a>
     </div>
   </div>
 </aside>
@@ -185,8 +192,11 @@
 <script>
 (function () {
   function send() {
-    const h = document.body.getBoundingClientRect().height;
-    window.parent.postMessage({ type: "dw-resize", height: h }, "*");
+    const card = document.querySelector('.mobile-cta-card');
+    if (card) {
+      const h = Math.ceil(card.getBoundingClientRect().height + 40);
+      window.parent.postMessage({ type: "dw-resize", height: h }, "*");
+    }
   }
   window.addEventListener("load", send);
   window.addEventListener("resize", send);
@@ -196,4 +206,3 @@
 </script>
 </body>
 </html>
-
