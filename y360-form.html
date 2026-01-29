@@ -1,43 +1,81 @@
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbw_Xhm6Pmk913sUHLmwCKT1GAsyoSc8iriXyQpXKuExwZsQxW1CHh--TbERDmDPUV71/exec';
-    const form = document.getElementById('leadForm');
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: -apple-system, sans-serif; margin: 0; padding: 15px; background: white; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:disabled { background: #ccc; }
+        #msg { display: none; color: #28a745; text-align: center; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
 
-    // Cố gắng lấy UTM từ trang cha, nếu bị chặn thì bỏ qua để tránh lỗi script
-    try {
-        const urlParams = new URLSearchParams(window.top.location.search);
-        document.getElementById('utm_source').value = urlParams.get('utm_source') || '';
-        document.getElementById('utm_medium').value = urlParams.get('utm_medium') || '';
-        document.getElementById('utm_campaign').value = urlParams.get('utm_campaign') || '';
-    } catch (e) {
-        console.warn("Không thể lấy UTM từ trang cha do chính sách bảo mật trình duyệt.");
-    }
+    <form id="y360-lead-form">
+        <input type="text" name="name" placeholder="Họ và tên" required>
+        <input type="tel" name="phone" placeholder="Số điện thoại" required>
+        <input type="email" name="email" placeholder="Email" required>
+        
+        <input type="hidden" name="utm_source" id="utm_source">
+        <input type="hidden" name="utm_medium" id="utm_medium">
+        <input type="hidden" name="utm_campaign" id="utm_campaign">
+        
+        <button type="submit" id="submitBtn">GỬI THÔNG TIN</button>
+    </form>
+    
+    <div id="msg">Đăng ký thành công! Cảm ơn bạn.</div>
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Đang gửi...';
+    <script>
+        // Đảm bảo DOM đã load xong mới chạy JS
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbw_Xhm6Pmk913sUHLmwCKT1GAsyoSc8iriXyQpXKuExwZsQxW1CHh--TbERDmDPUV71/exec';
+            const form = document.getElementById('y360-lead-form');
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('msg');
 
-        // Sử dụng FormData để lấy toàn bộ dữ liệu form
-        const formData = new FormData(form);
+            // Xử lý lấy UTM an toàn từ URL trang cha (nếu có thể) hoặc trang hiện tại
+            function getParam(name) {
+                try {
+                    // Ưu tiên lấy từ trang cha (WordPress)
+                    const parentParams = new URLSearchParams(window.top.location.search);
+                    if (parentParams.has(name)) return parentParams.get(name);
+                } catch (e) {
+                    // Nếu bị chặn Cross-origin, lấy từ URL chính nó
+                    const selfParams = new URLSearchParams(window.location.search);
+                    return selfParams.get(name);
+                }
+                return '';
+            }
 
-        fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors', // Thêm dòng này để vượt qua lỗi CORS khi dùng iframe
-            body: formData
-        })
-        .then(() => {
-            // Lưu ý: khi dùng mode 'no-cors', response trả về sẽ rỗng
-            // nên chúng ta mặc định là thành công.
-            document.getElementById('msg').style.display = 'block';
-            form.reset();
-            submitBtn.style.display = 'none';
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Gửi lại';
-            alert('Có lỗi xảy ra, vui lòng thử lại!');
+            document.getElementById('utm_source').value = getParam('utm_source');
+            document.getElementById('utm_medium').value = getParam('utm_medium');
+            document.getElementById('utm_campaign').value = getParam('utm_campaign');
+
+            if (form) {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    btn.disabled = true;
+                    btn.innerText = 'Đang gửi...';
+
+                    fetch(scriptURL, { 
+                        method: 'POST', 
+                        mode: 'no-cors', 
+                        body: new FormData(form)
+                    })
+                    .then(() => {
+                        form.style.display = 'none';
+                        msg.style.display = 'block';
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        btn.disabled = false;
+                        btn.innerText = 'Gửi lại';
+                    });
+                });
+            }
         });
-    });
-</script>
+    </script>
+</body>
+</html>
