@@ -4,16 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: -apple-system, sans-serif; margin: 0; padding: 15px; background: white; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        button:disabled { background: #ccc; }
-        #msg { display: none; color: #28a745; text-align: center; font-weight: bold; margin-top: 10px; }
+        body {
+        max-width: 600px;
+        font-family: -apple-system, sans-serif;
+        margin: 0 auto;
+        padding: 15px;
+        background: white;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    button {
+        width: 60%; 
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        display: block;  
+        margin: 16px auto 0;
+    }
+
+    button:disabled {
+        background: #ccc;
+    }
+
+    #msg {
+        display: none;
+        color: #28a745;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 10px;
+    }
     </style>
 </head>
 <body>
 
     <form id="y360-lead-form">
+        <img src="https://cdn.youmed.vn/tin-tuc/wp-content/uploads/2024/08/YouMed-Banner-1200x630-1.png" alt="Banner Nhà Thuốc" style="width: 100%; border-radius: 0px 0px 0 0; display: block;">
         <input type="text" name="name" placeholder="Họ và tên" required>
         <input type="tel" name="phone" placeholder="Số điện thoại" required>
         <input type="email" name="email" placeholder="Email" required>
@@ -24,7 +62,7 @@
         <input type="hidden" name="utm_medium" id="utm_medium">
         <input type="hidden" name="utm_campaign" id="utm_campaign">
         
-        <button type="submit" id="submitBtn">GỬI THÔNG TIN</button>
+        <button type="submit" id="submitBtn">ĐĂNG KÝ</button>
     </form>
     
     <div id="msg">Đăng ký thành công! Cảm ơn bạn.</div>
