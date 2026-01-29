@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
+        form { max-width: 400px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #218838; }
+        .success-msg { display: none; color: green; text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<form id="leadForm">
+    <h3>Đăng ký tư vấn</h3>
+    <input type="text" name="name" placeholder="Họ và tên" required>
+    <input type="tel" name="phone" placeholder="Số điện thoại" required>
+    <input type="email" name="email" placeholder="Email" required>
+    
+    <input type="hidden" name="utm_source" id="utm_source">
+    <input type="hidden" name="utm_medium" id="utm_medium">
+    <input type="hidden" name="utm_campaign" id="utm_campaign">
+    
+    <button type="submit" id="submitBtn">Gửi thông tin</button>
+    <div id="msg" class="success-msg">Cảm ơn bạn đã đăng ký!</div>
+</form>
+
+<script>
+    // Tự động lấy tham số từ URL của trang chính (Wordpress)
+    const urlParams = new URLSearchParams(window.top.location.search);
+    document.getElementById('utm_source').value = urlParams.get('utm_source') || '';
+    document.getElementById('utm_medium').value = urlParams.get('utm_medium') || '';
+    document.getElementById('utm_campaign').value = urlParams.get('utm_campaign') || '';
+
+    const scriptURL = 'THAY_URL_WEB_APP_CUA_BAN_VAO_DAY';
+    const form = document.getElementById('leadForm');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').innerText = 'Đang gửi...';
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                document.getElementById('msg').style.display = 'block';
+                form.reset();
+                document.getElementById('submitBtn').style.display = 'none';
+            })
+            .catch(error => console.error('Error!', error.message));
+    });
+</script>
+
+</body>
+</html>
