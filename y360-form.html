@@ -6,24 +6,37 @@
     <style>
         body {
         max-width: 600px;
-        font-family: -apple-system, sans-serif;
+        font-family: Inter, sans-serif;
         margin: 0 auto;
         padding: 15px;
-        background: white;
+        background: #f3f3f3;
+        font-size: 14px;
+    }
+    
+    div {
+    	font-family: Inter;
+        font-size: 14px;
+        padding: 10px;
+        margin: 0 auto;
+		line-height: 1;
+        text-align: justify;
     }
 
     input {
+    	font-family: Inter;
         width: 100%;
         padding: 12px;
-        margin: 8px 0;
+        margin: 3px 0;
         border: 1px solid #ddd;
         border-radius: 5px;
         box-sizing: border-box;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     button {
-        width: 60%; 
+    	font-family: Inter;
+        font-size: 18px;
+        width: 40%; 
         padding: 12px;
         background: #007bff;
         color: white;
@@ -52,6 +65,14 @@
 
     <form id="y360-lead-form">
         <img src="https://cdn.youmed.vn/tin-tuc/wp-content/uploads/2024/08/YouMed-Banner-1200x630-1.png" alt="Banner Nhà Thuốc" style="width: 100%; border-radius: 0px 0px 0 0; display: block;">
+        
+        <div class="form-intro">
+        <p>Cảm ơn Quý Dược sĩ đã quan tâm việc cập nhật thông tin chuyên môn cùng với Y360.</p>
+        <p>👉 Quý Dược sĩ vui lòng điền thông tin bên dưới nhằm được hỗ trợ tạo tài khoản học tập trên nền tảng Y360.</p>
+        <p>📲 Dược sĩ đừng quên kiểm tra Zalo để nhận thông tin đăng nhập nhé.</p>
+        <p>📌 Thông tin cá nhân sẽ được bảo mật, chỉ sử dụng với mục đích tạo tài khoản để Dược sĩ tìm hiểu tài liệu chuyên môn.</p>
+    </div>
+    
         <input type="text" name="name" placeholder="Họ và tên" required>
         <input type="tel" name="phone" placeholder="Số điện thoại" required>
         <input type="email" name="email" placeholder="Email" required>
