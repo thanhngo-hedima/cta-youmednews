@@ -9,7 +9,7 @@
     <style>
         body {
         max-width: 600px;
-        font-family: Inter, sans-serif !important;
+        font-family: Inter, Arial !important;
         margin: 0 auto;
         padding: 15px;
         background: #f3f3f3;
@@ -17,7 +17,7 @@
     }
     
     div {
-    	font-family: Inter, sans-serif !important;
+    	font-family: Inter;
         font-size: 14px;
         padding: 10px;
         margin: 0 auto;
@@ -26,7 +26,7 @@
     }
 
     input {
-    	font-family: Inter, sans-serif !important;
+    	font-family: Inter;
         width: 100%;
         padding: 12px;
         margin: 3px 0;
@@ -37,7 +37,7 @@
     }
 
     button {
-    	font-family: Inter, sans-serif !important;
+    	font-family: Inter;
         font-size: 18px;
         width: 40%; 
         padding: 12px;
@@ -91,55 +91,62 @@
     
     <div id="msg">Đăng ký thành công! Cảm ơn bạn.</div>
 
-    <script>
-        // Đảm bảo DOM đã load xong mới chạy JS
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbx15jMhRWGmvOfscijBdUP_5org0-X6tO7JiWBizMYZqFo2PomyVKhQrGy452bvTN94/exec';
-            const form = document.getElementById('y360-lead-form');
-            const btn = document.getElementById('submitBtn');
-            const msg = document.getElementById('msg');
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx15jMhRWGmvOfscijBdUP_5org0-X6tO7JiWBizMYZqFo2PomyVKhQrGy452bvTN94/exec';
+        const form = document.getElementById('y360-lead-form');
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('msg');
 
-            // Xử lý lấy UTM an toàn từ URL trang cha (nếu có thể) hoặc trang hiện tại
-            function getParam(name) {
-                try {
-                    // Ưu tiên lấy từ trang cha (WordPress)
-                    const parentParams = new URLSearchParams(window.top.location.search);
-                    if (parentParams.has(name)) return parentParams.get(name);
-                } catch (e) {
-                    // Nếu bị chặn Cross-origin, lấy từ URL chính nó
-                    const selfParams = new URLSearchParams(window.location.search);
-                    return selfParams.get(name);
-                }
-                return '';
+        function getParam(name) {
+            try {
+                const parentParams = new URLSearchParams(window.top.location.search);
+                if (parentParams.has(name)) return parentParams.get(name);
+            } catch (e) {
+                const selfParams = new URLSearchParams(window.location.search);
+                return selfParams.get(name);
             }
+            return '';
+        }
 
-            document.getElementById('utm_source').value = getParam('utm_source');
-            document.getElementById('utm_medium').value = getParam('utm_medium');
-            document.getElementById('utm_campaign').value = getParam('utm_campaign');
+        // Gán giá trị UTM ngay khi load
+        document.getElementById('utm_source').value = getParam('utm_source');
+        document.getElementById('utm_medium').value = getParam('utm_medium');
+        document.getElementById('utm_campaign').value = getParam('utm_campaign');
 
-            if (form) {
-                form.addEventListener('submit', e => {
-                    e.preventDefault();
-                    btn.disabled = true;
-                    btn.innerText = 'Đang gửi...';
-
-                    fetch(scriptURL, { 
-                        method: 'POST', 
-                        mode: 'no-cors', 
-                        body: new FormData(form)
-                    })
-                    .then(() => {
-                        form.style.display = 'none';
-                        msg.style.display = 'block';
-                    })
-                    .catch(error => {
-                        console.error('Error!', error.message);
-                        btn.disabled = false;
-                        btn.innerText = 'Gửi lại';
-                    });
+        if (form) {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                btn.disabled = true;
+                btn.innerText = 'Đang gửi...';
+				
+                const formData = new FormData(form);
+                const params = new URLSearchParams();
+                formData.forEach((value, key) => {
+                    params.append(key, value);
                 });
-            }
-        });
-    </script>
+
+                fetch(scriptURL, { 
+                    method: 'POST', 
+                    mode: 'no-cors', 
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: params.toString() // Gửi dưới dạng chuỗi tham số
+                })
+                .then(() => {
+                    form.style.display = 'none';
+                    msg.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    btn.disabled = false;
+                    btn.innerText = 'GỬI LẠI';
+                    alert('Có lỗi xảy ra, vui lòng thử lại.');
+                });
+            });
+        }
+    });
+</script>
 </body>
 </html>
