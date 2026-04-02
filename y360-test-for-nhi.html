@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -26,6 +25,21 @@
         button:disabled { background: #cbd5e0; }
         
         #msg { display: none; text-align: center; padding: 50px 20px; background: white; border-radius: 12px; }
+
+        /* Bổ sung CSS cho nút Zalo để biến chữ thành một Nút bấm nổi bật */
+        .zalo-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 20px;
+            background: #0068ff;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .zalo-btn:hover { background: #0054cc; }
     </style>
 </head>
 <body>
@@ -107,14 +121,14 @@
 <div id="msg">
     <h2 style="color: #28a745;">Cảm ơn bạn!</h2>
     <p>Kết quả khảo sát đã được ghi nhận thành công.</p>
-    <!-- Đổi href thành javascript và gọi hàm openZaloOA() -->
-    <a href="javascript:void(0)" onclick="openZaloOA()" class="zalo-btn">
+    
+    <!-- Sử dụng link web chuẩn + target="_top" để bẻ khóa Webview của Zalo -->
+    <a href="https://zalo.me/2592899659654122271" target="_top" class="zalo-btn">
         TRUY CẬP ZALO OA<br>ĐỂ NHẬN NGAY QUÀ TẶNG
     </a>
 </div>
     
 <script>
-    // URL này bạn cần cập nhật từ Google Apps Script của mình
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxyvPVSUSqKoxhqigkLT8SmjPBcY3rOKer2-lSs3sUsDkFE5klHJc84XJjub5WVkbQhuA/exec';
     const form = document.getElementById('quiz-form');
     const btn = document.getElementById('submitBtn');
@@ -130,7 +144,7 @@
         btn.innerText = 'Đang xử lý...';
 
         const formData = new FormData(form);
-        const finalData = new URLSearchParams();
+        const sendData = new FormData(); // Đổi sang FormData để gửi mượt hơn trên Mobile Zalo
         let tempObj = {};
 
         formData.forEach((value, key) => {
@@ -142,13 +156,16 @@
         });
 
         for (let key in tempObj) {
-            finalData.append(key, tempObj[key]);
+            sendData.append(key, tempObj[key]);
         }
 
-        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: finalData })
+        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: sendData })
         .then(() => {
             document.getElementById('form-container').style.display = 'none';
             document.getElementById('msg').style.display = 'block';
+            
+            // Lệnh này bắt buộc phải có để màn hình đt tự cuộn lên thông báo Cám ơn
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         })
         .catch(error => {
             btn.disabled = false;
@@ -156,22 +173,6 @@
             alert('Lỗi gửi dữ liệu.');
         });
     });
-
-    // Thêm hàm xử lý mở Zalo OA này vào dưới cùng
-    function openZaloOA() {
-        var oaId = "2592899659654122271"; // ID Zalo OA của bạn
-        
-        // Kiểm tra xem trình duyệt hiện tại có phải là Zalo không
-        var isZalo = /Zalo/i.test(navigator.userAgent);
-        
-        if (isZalo) {
-            // Nếu đang mở bằng Zalo -> Dùng Deep Link ép Zalo mở giao diện OA
-            window.location.href = "zalo://oa?uid=" + oaId;
-        } else {
-            // Nếu mở bằng Chrome, Safari, Facebook -> Mở link web bình thường
-            window.open("https://zalo.me/" + oaId, "_blank");
-        }
-    }
 </script>
 </body>
 </html>
